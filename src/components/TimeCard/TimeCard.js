@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Timer from './Timer.view';
 import {View, Text, StyleSheet} from 'react-native';
 
 export class TimeCard extends React.Component {
@@ -7,20 +8,29 @@ export class TimeCard extends React.Component {
     return (
       <View style={styles.card}>
         <Text>This is a time card.</Text>
+        <Timer style={styles.timer} running={this.props.running} />
       </View>
     );
   }
 }
 
-const Timer = () => {};
-
 const styles = StyleSheet.create({
   card: {
     alignSelf: 'stretch',
-    backgroundColor: 'green',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#AD70FB',
     margin: 15,
     padding: 15,
     height: 75,
     borderRadius: 10,
+  },
+  smallTitle: {
+    fontSize: 17,
+    fontWeight: 'bold',
+  },
+  subText: {},
+  timer: {
+    alignSelf: 'flex-end',
   },
 });

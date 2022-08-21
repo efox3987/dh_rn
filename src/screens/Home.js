@@ -5,7 +5,7 @@ import {TimeCard} from '../components/TimeCard/TimeCard';
 const Home = () => {
   return (
     <View style={styles.main}>
-      <TimeCard />
+      <TimeCard running={false} />
       <Text>Hello</Text>
     </View>
   );
