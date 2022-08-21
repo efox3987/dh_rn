@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {Text, TouchableOpacity} from 'react-native';
+// import Blink from '../../util/Blink';
 
 class Timer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       running: false,
-      time: new Date(),
+      time: 0,
     };
   }
 
@@ -18,18 +19,36 @@ class Timer extends React.Component {
   };
 
   stop = () => {
-    console.log('stopped timer');
+    clearInterval(this.timerId);
   };
 
   start = () => {
-    console.log('started timer');
+    this.timerId = setInterval(() => {
+      this.setState({time: (this.state.time += 1)});
+    }, 1000);
+  };
+
+  // Ugly and ungainly method of changing the time display depending on time elapsed.
+  displayTime = () => {
+    var minutes = Math.floor(this.state.time / 60) % 60;
+    var hours = Math.floor(this.state.time / 3600);
+    if (this.state.time < 60) {
+      // Seconds only
+      return <Text>{this.state.time}s</Text>;
+    } else {
+      return (
+        <Text>
+          {hours}:
+          {minutes < 10 ? <Text>0{minutes}</Text> : <Text>{minutes}</Text>}
+        </Text>
+      );
+    }
   };
 
   render() {
-    console.log(this.state.running);
     return (
       <TouchableOpacity onPress={this.onPress}>
-        <Text>{this.state.time.toLocaleTimeString()}</Text>
+        {this.displayTime()}
       </TouchableOpacity>
     );
   }
