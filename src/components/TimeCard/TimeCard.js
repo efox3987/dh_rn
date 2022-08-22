@@ -21,8 +21,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#AD70FB',
     margin: 15,
-    padding: 15,
-    height: 75,
+    paddingHorizontal: 35,
+    paddingVertical: 15,
+    height: 90,
     borderRadius: 10,
   },
   smallTitle: {

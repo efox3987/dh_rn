@@ -1,15 +1,28 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, FlatList} from 'react-native';
 import {TimeCard} from '../components/TimeCard/TimeCard';
+import Icon from 'react-native-vector-icons/AntDesign';
 
-const Home = () => {
-  return (
-    <View style={styles.main}>
-      <TimeCard running={false} />
-      <Text>Hello</Text>
-    </View>
-  );
-};
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activities: [],
+    };
+  }
+
+  render() {
+    return (
+      <View style={styles.main}>
+        <FlatList>
+          <TimeCard />
+        </FlatList>
+        <Text>Hello</Text>
+        <Icon name={'pluscircle'} />
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   main: {

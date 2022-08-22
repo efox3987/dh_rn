@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 // import Blink from '../../util/Blink';
 
 class Timer extends React.Component {
@@ -25,7 +25,7 @@ class Timer extends React.Component {
   start = () => {
     this.timerId = setInterval(() => {
       this.setState({time: (this.state.time += 1)});
-    }, 1000);
+    }, 500);
   };
 
   // Ugly and ungainly method of changing the time display depending on time elapsed.
@@ -33,11 +33,12 @@ class Timer extends React.Component {
     var minutes = Math.floor(this.state.time / 60) % 60;
     var hours = Math.floor(this.state.time / 3600);
     if (this.state.time < 60) {
-      // Seconds only
-      return <Text>{this.state.time}s</Text>;
+      // Seconds only.
+      return <Text style={styles.main}>{this.state.time}s</Text>;
     } else {
       return (
-        <Text>
+        // Minutes and hours.
+        <Text style={styles.main}>
           {hours}:
           {minutes < 10 ? <Text>0{minutes}</Text> : <Text>{minutes}</Text>}
         </Text>
@@ -47,7 +48,7 @@ class Timer extends React.Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={this.onPress}>
+      <TouchableOpacity onPress={this.onPress} style={styles.container}>
         {this.displayTime()}
       </TouchableOpacity>
     );
@@ -55,3 +56,14 @@ class Timer extends React.Component {
 }
 
 export default Timer;
+
+const styles = StyleSheet.create({
+  container: {
+    alignSelf: 'center',
+  },
+  main: {
+    fontWeight: 'bold',
+    fontSize: 34,
+    color: 'white',
+  },
+});
