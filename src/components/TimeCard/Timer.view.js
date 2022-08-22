@@ -25,7 +25,7 @@ class Timer extends React.Component {
   start = () => {
     this.timerId = setInterval(() => {
       this.setState({time: (this.state.time += 1)});
-    }, 500);
+    }, 1000);
   };
 
   // Ugly and ungainly method of changing the time display depending on time elapsed.
