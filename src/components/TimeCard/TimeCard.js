@@ -2,7 +2,7 @@ import React from 'react';
 
 import Timer from './Timer.view';
 import {View, Text, StyleSheet} from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export class TimeCard extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export class TimeCard extends React.Component {
   render() {
     return (
       <View style={styles.card}>
-        <Icon />
+        <Icon name="drag-indicator" size={50} color={'grey'} />
         <Text>{this.state.task}</Text>
         <Timer style={styles.timer} running={this.props.running} />
       </View>
