@@ -70,10 +70,12 @@ const styles = StyleSheet.create({
   smallTitle: {
     fontSize: 17,
     fontWeight: 'bold',
+    color: 'white',
   },
   subText: {
     fontSize: 13,
     fontWeight: 'normal',
+    color: 'white',
   },
   timer: {
     alignSelf: 'center',

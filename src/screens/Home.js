@@ -72,6 +72,7 @@ class Home extends React.Component {
             <TimeCard />
             <TimeCard />
             <TimeCard />
+
             <TimeCard />
           </ScrollView>
           {this.newTaskModal()}
@@ -101,8 +102,8 @@ const styles = StyleSheet.create({
   },
   main: {
     flex: 4,
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flexDirection: 'column-reverse',
+    justifyContent: 'flex-end',
     
   },
   preview: {
