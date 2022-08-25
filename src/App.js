@@ -11,7 +11,12 @@ const Tab = createBottomTabNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: { 
+          backgroundColor: '#6C6C6A',
+      },
+    }}>
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Analysis" component={Analysis} />
       </Tab.Navigator>

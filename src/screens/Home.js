@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderColor: 'black',
     borderWidth: 1,
+    backgroundColor: '#2D2D2A'
   },
   plusView: {
     color: '#FFF',
