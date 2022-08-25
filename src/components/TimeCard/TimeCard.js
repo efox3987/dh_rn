@@ -8,16 +8,25 @@ export class TimeCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      task: 'This is a time card.',
+      title: 'Time Card',
+      task: 'This is a time card task.',
     };
   }
   render() {
     return (
       <View style={styles.card}>
-        <Icon name="drag-indicator" size={50} color={'grey'} />
-        <Text>{this.state.task}</Text>
-        <Timer style={styles.timer} running={this.props.running} />
+        <View style={styles.iconView}>
+          <Icon name="drag-indicator" size={40} color={'#6C6C6A'} />
+        </View>
+        <View style={styles.textView}>
+          <Text style={styles.smallTitle}>{this.state.title}</Text>
+          <Text style={styles.subText}>{this.state.task}</Text>
+          <Text style={styles.subText}>{this.state.task}</Text>
+          <Text style={styles.subText}>{this.state.task}</Text>
+        </View>
+        <View style={styles.timerView}>
+          <Timer style={styles.timer} running={this.props.running} />
+        </View>
       </View>
     );
   }
@@ -31,8 +40,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#AD70FB',
     marginHorizontal: 15,
     marginVertical: 5,
-    paddingHorizontal: 35,
-    paddingVertical: 15,
+    paddingRight: 10,
+    paddingVertical: 10,
     height: 90,
     borderRadius: 10,
     shadowColor: '#171717',
@@ -40,12 +49,33 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 3,
   },
+  iconView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    //borderWidth: 1,
+  },
+  textView: {
+    flex: 7,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    //borderWidth: 1,
+  },
+  timerView: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    //borderWidth: 1,
+  },
   smallTitle: {
     fontSize: 17,
     fontWeight: 'bold',
   },
-  subText: {},
+  subText: {
+    fontSize: 13,
+    fontWeight: 'normal',
+  },
   timer: {
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
   },
 });
