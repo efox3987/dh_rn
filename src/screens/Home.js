@@ -59,7 +59,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <>
+      <View style={styles.wrapper}>
         <View style={styles.main}>
           <ScrollView
             ref={ref => {
@@ -69,33 +69,45 @@ class Home extends React.Component {
               this.scrollView.scrollToEnd({animated: true})
             }>
             <TimeCard />
+            <TimeCard />
+            <TimeCard />
+            <TimeCard />
+            <TimeCard />
           </ScrollView>
           {this.newTaskModal()}
         </View>
-
-        <View style={styles.plusView}>
-          <TouchableOpacity>
-            <Icon
-              style={styles.plus}
-              name={'pluscircle'}
-              size={45}
-              onPress={this.addTask}
-            />
-          </TouchableOpacity>
+        <View style={styles.preview}>
+          <View style={styles.plusView}>
+            <TouchableOpacity>
+              <Icon
+                style={styles.plus}
+                name={'pluscircle'}
+                size={45}
+                onPress={this.addTask}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-      </>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  main: {
+  wrapper: {
     flex: 1,
     flexDirection: 'column',
+    backgroundColor: '#2D2D2A',
+  },
+  main: {
+    flex: 4,
+    flexDirection: 'column',
     justifyContent: 'center',
-    borderColor: 'black',
-    borderWidth: 1,
-    backgroundColor: '#2D2D2A'
+    
+  },
+  preview: {
+    flex: 3,
+    
   },
   plusView: {
     color: '#FFF',
