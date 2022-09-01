@@ -104,11 +104,9 @@ const styles = StyleSheet.create({
     flex: 4,
     flexDirection: 'column-reverse',
     justifyContent: 'flex-end',
-    
   },
   preview: {
     flex: 3,
-    
   },
   plusView: {
     color: '#FFF',
