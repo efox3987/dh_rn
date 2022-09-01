@@ -10,47 +10,54 @@ import {
 } from 'react-native';
 import {TimeCard} from '../components/TimeCard/TimeCard';
 import Icon from 'react-native-vector-icons/AntDesign';
+import NewTaskModal from '../components/NewCardModal';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       //reverse sort this motherjamma?
-      activities: [],
+      timeCards: [],
       showTaskModal: false,
     };
   }
 
   // For the new time card form.
-  newTaskModal = () => {
-    return (
-      <View style={styles.centeredView}>
-        <Modal
-          style={styles.modalView}
-          animationType="slide"
-          transparent={true}
-          visible={this.state.showTaskModal}
-          onRequestClose={() => {
-            this.setState({showTaskModal: !this.state.showTaskModal});
-          }}>
-          <View style={styles.centeredView}>
-            {/*Cause modals are whack, this is the one whos style dictates how the modal will actually appear*/}
-            <View style={styles.modalView}>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.setModalVisible(false)}>
-                <Text>Close</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
-      </View>
-    );
-  };
+  // newTaskModal = () => {
+  //   return (
+  //     <View style={styles.centeredView}>
+  //       <Modal
+  //         style={styles.modalView}
+  //         animationType="slide"
+  //         transparent={true}
+  //         visible={this.state.showTaskModal}
+  //         onRequestClose={() => {
+  //           this.setState({showTaskModal: !this.state.showTaskModal});
+  //         }}>
+  //         <View style={styles.centeredView}>
+  //           {/*Cause modals are whack, this is the one whos style dictates how the modal will actually appear*/}
+  //           <View style={styles.modalView}>
+  //             <TouchableOpacity
+  //               style={styles.button}
+  //               onPress={() => this.setModalVisible(false)}>
+  //               <Text>Close</Text>
+  //             </TouchableOpacity>
+  //           </View>
+  //         </View>
+  //       </Modal>
+  //     </View>
+  //   );
+  // };
 
   addTask = () => {
+    console.log('called addTask');
     this.setState({showTaskModal: true});
+    console.log(this.state.showTaskModal);
     //this.setState.activities.push();
+  };
+
+  onCloseModal = visible => {
+    this.setState({showTaskModal: false});
   };
 
   setModalVisible = visible => {
@@ -68,14 +75,12 @@ class Home extends React.Component {
             onContentSizeChange={() =>
               this.scrollView.scrollToEnd({animated: true})
             }>
-            <TimeCard />
-            <TimeCard />
-            <TimeCard />
-            <TimeCard />
-
-            <TimeCard />
+            {this.state.timeCards}
           </ScrollView>
-          {this.newTaskModal()}
+          <NewTaskModal
+            visible={this.state.showTaskModal}
+            onClose={this.onCloseModal}
+          />
         </View>
         <View style={styles.preview}>
           <View style={styles.plusView}>
