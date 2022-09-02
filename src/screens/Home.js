@@ -56,7 +56,7 @@ class Home extends React.Component {
     //this.setState.activities.push();
   };
 
-  onCloseModal = visible => {
+  onCloseModal = () => {
     this.setState({showTaskModal: false});
   };
 

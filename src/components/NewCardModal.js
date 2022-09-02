@@ -15,6 +15,8 @@ export default class NewTaskModal extends React.Component {
     super(props);
     this.state = {
       modalVisible: this.props.visible,
+      title: '',
+      notes: '',
     };
   }
 
@@ -36,6 +38,13 @@ export default class NewTaskModal extends React.Component {
     }
   }
 
+  onChangeText(action) {
+    if (action === 'title') {
+    }
+    if (action === 'notes') {
+    }
+  }
+
   render() {
     return (
       <View style={styles.centeredView}>
@@ -45,14 +54,21 @@ export default class NewTaskModal extends React.Component {
           transparent={true}
           visible={this.state.modalVisible}
           onRequestClose={() => {
-            this.setModalVisible(!this.state.modalVisible);
+            this.closeModal();
           }}>
           <View style={styles.centeredView}>
             {/*Cause modals are whack, this is the one whos style dictates how the modal will actually appear*/}
             <View style={styles.modalView}>
+              <TextInput style={styles.title} placeholder={'Activity Name'} />
+              <TextInput
+                multiline
+                numberOfLines={3}
+                style={styles.notes}
+                placeholder={'Notes'}
+              />
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => this.closeModal(false)}>
+                onPress={() => this.closeModal()}>
                 <Text>Close</Text>
               </TouchableOpacity>
             </View>
@@ -65,6 +81,7 @@ export default class NewTaskModal extends React.Component {
 
 const styles = StyleSheet.create({
   modalView: {
+    flexDirection: 'column',
     margin: 20,
     backgroundColor: 'white',
     padding: 35,
@@ -76,7 +93,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     borderRadius: 5,
+    maxHeight: 500,
     elevation: 5,
+    alignSelf: 'stretch',
   },
   centeredView: {
     flex: 1,
@@ -85,6 +104,20 @@ const styles = StyleSheet.create({
   },
   button: {
     color: 'black',
-    borderRadius: 5,
+  },
+  title: {
+    borderWidth: 1,
+    borderColor: 'black',
+    alignSelf: 'stretch',
+    height: 40,
+    padding: 10,
+    marginBottom: 10,
+  },
+  notes: {
+    borderWidth: 1,
+    borderColor: 'black',
+    alignSelf: 'stretch',
+    padding: 10,
+    marginBottom: 10,
   },
 });
