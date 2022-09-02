@@ -22,39 +22,16 @@ class Home extends React.Component {
     };
   }
 
-  // For the new time card form.
-  // newTaskModal = () => {
-  //   return (
-  //     <View style={styles.centeredView}>
-  //       <Modal
-  //         style={styles.modalView}
-  //         animationType="slide"
-  //         transparent={true}
-  //         visible={this.state.showTaskModal}
-  //         onRequestClose={() => {
-  //           this.setState({showTaskModal: !this.state.showTaskModal});
-  //         }}>
-  //         <View style={styles.centeredView}>
-  //           {/*Cause modals are whack, this is the one whos style dictates how the modal will actually appear*/}
-  //           <View style={styles.modalView}>
-  //             <TouchableOpacity
-  //               style={styles.button}
-  //               onPress={() => this.setModalVisible(false)}>
-  //               <Text>Close</Text>
-  //             </TouchableOpacity>
-  //           </View>
-  //         </View>
-  //       </Modal>
-  //     </View>
-  //   );
-  // };
-
-  addTask = () => {
-    console.log('called addTask');
+  showModal() {
     this.setState({showTaskModal: true});
     console.log(this.state.showTaskModal);
     //this.setState.activities.push();
-  };
+  }
+
+  addTask(title, notes) {
+    console.log('new task title ' + title);
+    console.log('notes: ' + notes);
+  }
 
   onCloseModal = () => {
     this.setState({showTaskModal: false});
@@ -79,7 +56,8 @@ class Home extends React.Component {
           </ScrollView>
           <NewTaskModal
             visible={this.state.showTaskModal}
-            onClose={this.onCloseModal}
+            onClose={val => this.setModalVisible(val)}
+            onSave={(title, notes) => this.addTask(title, notes)}
           />
         </View>
         <View style={styles.preview}>
@@ -89,7 +67,7 @@ class Home extends React.Component {
                 style={styles.plus}
                 name={'pluscircle'}
                 size={45}
-                onPress={this.addTask}
+                onPress={() => this.showModal()}
               />
             </TouchableOpacity>
           </View>

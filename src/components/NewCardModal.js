@@ -25,24 +25,33 @@ export default class NewTaskModal extends React.Component {
   }
 
   closeModal() {
-    this.props.onClose();
+    this.props.onClose(false);
   }
 
+  // This is necessary for it to update the visible value when the plus button is pressed.
   componentDidUpdate(props) {
-    console.log('in didUpdate');
-    console.log(props);
-    console.log(this.props);
     if (props.visible !== this.props.visible) {
       console.log('update modal');
       this.setModalVisible(this.props.visible);
     }
   }
 
-  onChangeText(action) {
-    if (action === 'title') {
-    }
-    if (action === 'notes') {
-    }
+  componentDidMount() {
+    this.props.onClose(false);
+  }
+
+  onChangeTitle(text) {
+    this.setState({title: text});
+  }
+
+  onChangeNotes(text) {
+    this.setState({notes: text});
+  }
+
+  saveActivity() {
+    console.log(this.state.title);
+    console.log(this.state.notes);
+    this.props.onSave(this.state.title, this.state.notes);
   }
 
   render() {
@@ -57,20 +66,35 @@ export default class NewTaskModal extends React.Component {
             this.closeModal();
           }}>
           <View style={styles.centeredView}>
-            {/*Cause modals are whack, this is the one whos style dictates how the modal will actually appear*/}
             <View style={styles.modalView}>
-              <TextInput style={styles.title} placeholder={'Activity Name'} />
+              <TextInput
+                style={styles.title}
+                placeholder={'Activity Name'}
+                onChangeText={text => {
+                  this.onChangeTitle(text);
+                }}
+              />
               <TextInput
                 multiline
                 numberOfLines={3}
                 style={styles.notes}
                 placeholder={'Notes'}
+                onChangeText={text => {
+                  this.onChangeNotes(text);
+                }}
               />
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => this.closeModal()}>
-                <Text>Close</Text>
-              </TouchableOpacity>
+              <View style={styles.horizontalContainer}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => this.closeModal()}>
+                  <Text>Close</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => this.saveActivity()}>
+                  <Text>Save</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </Modal>
@@ -104,6 +128,8 @@ const styles = StyleSheet.create({
   },
   button: {
     color: 'black',
+    padding: 10,
+    margin: 5,
   },
   title: {
     borderWidth: 1,
@@ -119,5 +145,9 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     padding: 10,
     marginBottom: 10,
+  },
+  horizontalContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
 });
