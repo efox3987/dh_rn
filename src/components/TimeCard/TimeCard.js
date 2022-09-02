@@ -8,8 +8,8 @@ export class TimeCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'Time Card',
-      task: 'This is a time card task.',
+      title: props.title,
+      notes: props.notes,
     };
   }
   render() {
@@ -20,9 +20,7 @@ export class TimeCard extends React.Component {
         </View>
         <View style={styles.textView}>
           <Text style={styles.smallTitle}>{this.state.title}</Text>
-          <Text style={styles.subText}>{this.state.task}</Text>
-          <Text style={styles.subText}>{this.state.task}</Text>
-          <Text style={styles.subText}>{this.state.task}</Text>
+          <Text style={styles.subText}>{this.state.notes}</Text>
         </View>
         <View style={styles.timerView}>
           <Timer style={styles.timer} running={this.props.running} />

@@ -31,6 +31,9 @@ class Home extends React.Component {
   addTask(title, notes) {
     console.log('new task title ' + title);
     console.log('notes: ' + notes);
+    this.setState({
+      timeCards: [...this.state.timeCards, {title: title, notes: notes}],
+    });
   }
 
   onCloseModal = () => {
@@ -41,19 +44,25 @@ class Home extends React.Component {
     this.setState({showTaskModal: visible});
   };
 
+  // <ScrollView
+  //           ref={ref => {
+  //             this.scrollView = ref;
+  //           }}
+  //           onContentSizeChange={() =>
+  //             this.scrollView.scrollToEnd({animated: true})
+  //           }>
+  //           {this.state.timeCards}
+  //         </ScrollView>
   render() {
     return (
       <View style={styles.wrapper}>
         <View style={styles.main}>
-          <ScrollView
-            ref={ref => {
-              this.scrollView = ref;
-            }}
-            onContentSizeChange={() =>
-              this.scrollView.scrollToEnd({animated: true})
-            }>
-            {this.state.timeCards}
-          </ScrollView>
+          <FlatList
+            data={this.state.timeCards}
+            renderItem={({item}) => (
+              <TimeCard title={item.title} notes={item.notes} />
+            )}
+          />
           <NewTaskModal
             visible={this.state.showTaskModal}
             onClose={val => this.setModalVisible(val)}

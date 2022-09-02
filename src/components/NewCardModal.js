@@ -52,6 +52,7 @@ export default class NewTaskModal extends React.Component {
     console.log(this.state.title);
     console.log(this.state.notes);
     this.props.onSave(this.state.title, this.state.notes);
+    this.closeModal();
   }
 
   render() {
