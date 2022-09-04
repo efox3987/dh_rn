@@ -1,5 +1,7 @@
+import {Linter} from 'eslint';
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
+import theme from '../../style/theme';
 // import Blink from '../../util/Blink';
 
 class Timer extends React.Component {
@@ -23,8 +25,13 @@ class Timer extends React.Component {
   };
 
   start = () => {
+    const start = Date.now();
+    const elapsed = this.state.time;
+
     this.timerId = setInterval(() => {
-      this.setState({time: (this.state.time += 1)});
+      const millis = Date.now() - start;
+      const secs = Math.floor(millis / 1000);
+      this.setState({time: elapsed + secs});
     }, 1000);
   };
 
@@ -58,12 +65,13 @@ class Timer extends React.Component {
 export default Timer;
 
 const styles = StyleSheet.create({
+  view: {backgroundColor: theme.COLOR_ERROR},
   container: {
     alignSelf: 'center',
   },
   main: {
     fontWeight: 'bold',
-    fontSize: 34,
-    color: 'white',
+    fontSize: theme.FONT_SIZE_HUGE,
+    color: theme.TEXT_WHITE,
   },
 });

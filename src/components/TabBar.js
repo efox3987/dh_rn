@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { View, Text, TouchableOpacity } from 'react-native';
+import theme from '../style/theme';
 
 export class MyTabBar({ state, descriptors, navigation }) extends React.Component {
   return (
@@ -46,7 +47,7 @@ export class MyTabBar({ state, descriptors, navigation }) extends React.Componen
             onLongPress={onLongPress}
             style={{ flex: 1 }}
           >
-            <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
+            <Text style={{ color: isFocused ? theme.COLOR_PRIMARY : '#FFFFFF' }}>
               {label}
             </Text>
           </TouchableOpacity>

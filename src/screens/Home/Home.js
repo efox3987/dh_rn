@@ -23,6 +23,7 @@ class Home extends React.Component {
           title: 'Test',
           notes:
             "Long collection of notes about an acitivity card that doesn't exist, but has ot be here so we can test the text formatting.",
+          createdTime: new Date(),
         },
       ],
       showTaskModal: false,
@@ -38,8 +39,14 @@ class Home extends React.Component {
   addTask(title, notes) {
     console.log('new task title ' + title);
     console.log('notes: ' + notes);
+    const createdTime = new Date();
+
+    console.log(createdTime);
     this.setState({
-      timeCards: [...this.state.timeCards, {title: title, notes: notes}],
+      timeCards: [
+        ...this.state.timeCards,
+        {title: title, notes: notes, timeCreated: createdTime},
+      ],
     });
   }
 
@@ -51,15 +58,6 @@ class Home extends React.Component {
     this.setState({showTaskModal: visible});
   };
 
-  // <ScrollView
-  //           ref={ref => {
-  //             this.scrollView = ref;
-  //           }}
-  //           onContentSizeChange={() =>
-  //             this.scrollView.scrollToEnd({animated: true})
-  //           }>
-  //           {this.state.timeCards}
-  //         </ScrollView>
   render() {
     return (
       <View style={styles.wrapper}>
@@ -74,7 +72,12 @@ class Home extends React.Component {
             style={styles.listView}
             data={this.state.timeCards}
             renderItem={({item}) => (
-              <TimeCard title={item.title} notes={item.notes} />
+              <TimeCard
+                title={item.title}
+                notes={item.notes}
+                hour={item.createdTime.getHours()}
+                minutes={item.createdTime.getMinutes()}
+              />
             )}
           />
         </View>

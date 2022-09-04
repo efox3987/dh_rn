@@ -13,4 +13,7 @@ export declare type ThemeStyle = {
   COLOR_SURFACE_DEEP: string;
   COLOR_SURFACE_MID: string;
   COLOR_SURFACE_HIGH: string;
+
+  TEXT_WHITE: string;
+  TEXT_BLACK: string;
 };

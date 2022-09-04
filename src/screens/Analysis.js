@@ -1,10 +1,11 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
+import theme from '../style/theme';
 
 const Analysis = () => {
   return (
     <View style={styles.main}>
-      <Text>Analysis</Text>
+      <Text style={{color: theme.TEXT_WHITE}}>Analysis</Text>
     </View>
   );
 };
@@ -14,6 +15,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: theme.COLOR_BACKGROUND,
   },
 });
 

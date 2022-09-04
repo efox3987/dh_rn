@@ -10,8 +10,6 @@ import {
 
 export default class NewTaskModal extends React.Component {
   constructor(props) {
-    console.log('constructor');
-    console.log(props);
     super(props);
     this.state = {
       modalVisible: this.props.visible,
