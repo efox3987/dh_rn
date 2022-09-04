@@ -3,6 +3,7 @@ import React from 'react';
 import Timer from './Timer.view';
 import {View, Text, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import theme from '../../style/theme';
 
 export class TimeCard extends React.Component {
   constructor(props) {
@@ -35,9 +36,9 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#AD70FB',
-    marginHorizontal: 15,
-    marginVertical: 5,
+    backgroundColor: theme.COLOR_SURFACE_DEEP,
+    marginHorizontal: 10,
+    marginVertical: 10,
     paddingRight: 10,
     paddingVertical: 10,
     height: 90,

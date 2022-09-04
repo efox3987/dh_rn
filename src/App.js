@@ -3,7 +3,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import Home from './screens/Home';
+import Home from './screens/Home/Home';
 import Analysis from './screens/Analysis';
 import theme from './style/theme';
 
@@ -14,16 +14,18 @@ const App = () => {
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={{
-          title: '',
+          title: 'dh',
           tabBarStyle: {
-            backgroundColor: theme.COLOR_SECONDARY_BACKGROUND,
-            color: 'white,',
+            backgroundColor: theme.COLOR_SURFACE_HIGH,
           },
           headerStyle: {
-            height: 70,
-            backgroundColor: theme.COLOR_PRIMARY_BACKGROUND,
+            height: 100,
+            backgroundColor: theme.COLOR_SURFACE_HIGH,
           },
-          headerTitleStyle: {},
+          headerTitleStyle: {
+            color: theme.COLOR_PRIMARY,
+            fontSize: theme.FONT_SIZE_HUGE,
+          },
         }}>
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Analysis" component={Analysis} />

@@ -8,16 +8,23 @@ import {
   TouchableOpacity,
   Modal,
 } from 'react-native';
-import {TimeCard} from '../components/TimeCard/TimeCard';
+import {TimeCard} from '../../components/TimeCard/TimeCard';
 import Icon from 'react-native-vector-icons/AntDesign';
-import NewTaskModal from '../components/NewCardModal';
+import NewTaskModal from '../../components/NewCardModal';
+import {styles} from './styles';
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       //reverse sort this motherjamma?
-      timeCards: [],
+      timeCards: [
+        {
+          title: 'Test',
+          notes:
+            "Long collection of notes about an acitivity card that doesn't exist, but has ot be here so we can test the text formatting.",
+        },
+      ],
       showTaskModal: false,
     };
   }
@@ -56,17 +63,19 @@ class Home extends React.Component {
   render() {
     return (
       <View style={styles.wrapper}>
+        <NewTaskModal
+          style={styles.modal}
+          visible={this.state.showTaskModal}
+          onClose={val => this.setModalVisible(val)}
+          onSave={(title, notes) => this.addTask(title, notes)}
+        />
         <View style={styles.main}>
           <FlatList
+            style={styles.listView}
             data={this.state.timeCards}
             renderItem={({item}) => (
               <TimeCard title={item.title} notes={item.notes} />
             )}
-          />
-          <NewTaskModal
-            visible={this.state.showTaskModal}
-            onClose={val => this.setModalVisible(val)}
-            onSave={(title, notes) => this.addTask(title, notes)}
           />
         </View>
         <View style={styles.preview}>
@@ -85,60 +94,5 @@ class Home extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#2D2D2A',
-  },
-  main: {
-    flex: 4,
-    flexDirection: 'column-reverse',
-    justifyContent: 'flex-end',
-  },
-  preview: {
-    flex: 3,
-  },
-  plusView: {
-    color: '#FFF',
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
-    marginRight: 20,
-    marginBottom: 20,
-  },
-  plus: {
-    //This shadow needs work idk how to get it just on the outside of the icon...
-    color: '#AD70FB',
-    shadowColor: '#171717',
-    shadowOffset: {width: 0, height: 0},
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    padding: 35,
-    alignItems: 'center',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    borderRadius: 5,
-    elevation: 5,
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  button: {
-    color: 'black',
-    borderRadius: 5,
-  },
-});
 
 export default Home;

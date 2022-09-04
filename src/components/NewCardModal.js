@@ -57,49 +57,47 @@ export default class NewTaskModal extends React.Component {
 
   render() {
     return (
-      <View style={styles.centeredView}>
-        <Modal
-          style={styles.modalView}
-          animationType="slide"
-          transparent={true}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            this.closeModal();
-          }}>
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <TextInput
-                style={styles.title}
-                placeholder={'Activity Name'}
-                onChangeText={text => {
-                  this.onChangeTitle(text);
-                }}
-              />
-              <TextInput
-                multiline
-                numberOfLines={3}
-                style={styles.notes}
-                placeholder={'Notes'}
-                onChangeText={text => {
-                  this.onChangeNotes(text);
-                }}
-              />
-              <View style={styles.horizontalContainer}>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => this.closeModal()}>
-                  <Text>Close</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => this.saveActivity()}>
-                  <Text>Save</Text>
-                </TouchableOpacity>
-              </View>
+      <Modal
+        style={styles.modalView}
+        animationType="slide"
+        transparent={true}
+        visible={this.state.modalVisible}
+        onRequestClose={() => {
+          this.closeModal();
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <TextInput
+              style={styles.title}
+              placeholder={'Activity Name'}
+              onChangeText={text => {
+                this.onChangeTitle(text);
+              }}
+            />
+            <TextInput
+              multiline
+              numberOfLines={3}
+              style={styles.notes}
+              placeholder={'Notes'}
+              onChangeText={text => {
+                this.onChangeNotes(text);
+              }}
+            />
+            <View style={styles.horizontalContainer}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.closeModal()}>
+                <Text>Close</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => this.saveActivity()}>
+                <Text>Save</Text>
+              </TouchableOpacity>
             </View>
           </View>
-        </Modal>
-      </View>
+        </View>
+      </Modal>
     );
   }
 }

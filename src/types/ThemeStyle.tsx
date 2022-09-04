@@ -4,7 +4,13 @@ export declare type ThemeStyle = {
   FONT_SIZE_TITLE: number;
   FONT_SIZE_HUGE: number;
 
-  COLOR_PRIMARY_HIGHLIGHT: string;
-  COLOR_PRIMARY_BACKGROUND: string;
-  COLOR_SECONDARY_BACKGROUND: string;
+  COLOR_PRIMARY: string;
+  COLOR_PRIMARY_VAR: string;
+  COLOR_SECONDARY: string;
+  COLOR_ERROR: string;
+
+  COLOR_BACKGROUND: string;
+  COLOR_SURFACE_DEEP: string;
+  COLOR_SURFACE_MID: string;
+  COLOR_SURFACE_HIGH: string;
 };
