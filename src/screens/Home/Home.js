@@ -36,16 +36,20 @@ class Home extends React.Component {
     //this.setState.activities.push();
   }
 
-  addTask(title, notes) {
+  addTask(title, notes, hours, minutes) {
     console.log('new task title ' + title);
     console.log('notes: ' + notes);
-    const createdTime = new Date();
+    let createdTime = new Date();
 
     console.log(createdTime);
     this.setState({
       timeCards: [
         ...this.state.timeCards,
-        {title: title, notes: notes, timeCreated: createdTime},
+        {
+          title: title,
+          notes: notes,
+          createdTime: createdTime,
+        },
       ],
     });
   }

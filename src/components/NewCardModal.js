@@ -49,7 +49,10 @@ export default class NewTaskModal extends React.Component {
   saveActivity() {
     console.log(this.state.title);
     console.log(this.state.notes);
-    this.props.onSave(this.state.title, this.state.notes);
+    const timeCreated = new Date();
+    const hours = timeCreated.getHours();
+    const minutes = timeCreated.getMinutes();
+    this.props.onSave(this.state.title, this.state.notes, hours, minutes);
     this.closeModal();
   }
 

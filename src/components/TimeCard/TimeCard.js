@@ -64,19 +64,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    //borderWidth: 1,
   },
   textView: {
     flex: 7,
     flexDirection: 'column',
     justifyContent: 'center',
-    //borderWidth: 1,
   },
   timerView: {
     flex: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    //borderWidth: 1,
   },
   smallTitle: {
     fontSize: 17,
