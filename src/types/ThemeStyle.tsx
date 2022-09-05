@@ -10,7 +10,8 @@ export declare type ThemeStyle = {
   COLOR_ERROR: string;
 
   COLOR_BACKGROUND: string;
-  COLOR_SURFACE_DEEP: string;
+  COLOR_SURFACE_LOWEST: string;
+  COLOR_SURFACE_LOW: string;
   COLOR_SURFACE_MID: string;
   COLOR_SURFACE_HIGH: string;
 

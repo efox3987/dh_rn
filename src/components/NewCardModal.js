@@ -7,8 +7,10 @@ import {
   TextInput,
   StyleSheet,
 } from 'react-native';
+import CardContext from '../context/CardContext';
+import theme from '../style/theme';
 
-export default class NewTaskModal extends React.Component {
+export default class NewCardModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,6 +19,7 @@ export default class NewTaskModal extends React.Component {
       notes: '',
     };
   }
+  static contextType = CardContext;
 
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
@@ -47,12 +50,7 @@ export default class NewTaskModal extends React.Component {
   }
 
   saveActivity() {
-    console.log(this.state.title);
-    console.log(this.state.notes);
-    const timeCreated = new Date();
-    const hours = timeCreated.getHours();
-    const minutes = timeCreated.getMinutes();
-    this.props.onSave(this.state.title, this.state.notes, hours, minutes);
+    this.context.addCard(this.state.title, this.state.notes);
     this.closeModal();
   }
 
@@ -69,6 +67,7 @@ export default class NewTaskModal extends React.Component {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <TextInput
+              autoFocus={true}
               style={styles.title}
               placeholder={'Activity Name'}
               onChangeText={text => {
@@ -107,16 +106,16 @@ const styles = StyleSheet.create({
   modalView: {
     flexDirection: 'column',
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: theme.COLOR_SURFACE_HIGH,
     padding: 35,
     alignItems: 'center',
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.25,
+    shadowColor: theme.TEXT_BLACK,
     shadowRadius: 4,
-    borderRadius: 5,
+    borderRadius: 10,
     maxHeight: 500,
     elevation: 5,
     alignSelf: 'stretch',
@@ -133,18 +132,23 @@ const styles = StyleSheet.create({
   },
   title: {
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: theme.TEXT_WHITE,
+    color: theme.TEXT_WHITE,
     alignSelf: 'stretch',
     height: 40,
     padding: 10,
     marginBottom: 10,
+    borderRadius: 5,
   },
   notes: {
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: theme.TEXT_WHITE,
+    color: theme.TEXT_WHITE,
     alignSelf: 'stretch',
+    minHeight: 40,
     padding: 10,
     marginBottom: 10,
+    borderRadius: 5,
   },
   horizontalContainer: {
     flexDirection: 'row',
