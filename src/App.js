@@ -32,10 +32,12 @@ const App = () => {
           tabBarActiveTintColor: theme.COLOR_PRIMARY,
           tabBarStyle: {
             backgroundColor: theme.COLOR_SURFACE_HIGH,
+            shadowColor: 'transparent',
           },
           headerStyle: {
             height: 100,
             backgroundColor: theme.COLOR_SURFACE_HIGH,
+            shadowColor: 'transparent',
           },
           headerTitleStyle: {
             color: theme.COLOR_PRIMARY,
