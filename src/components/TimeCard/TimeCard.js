@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   wrapper: {
-    marginVertical: 10,
+    marginTop: 10,
   },
   iconView: {
     flex: 1,
