@@ -1,10 +1,10 @@
 import React from 'react';
-
-import Timer from './Timer.view';
 import {View, Text, StyleSheet} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import theme from '../../style/theme';
-import TouchHistoryMath from 'react-native/Libraries/Interaction/TouchHistoryMath';
+import Timer from './Timer.view';
+
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export class TimeCard extends React.Component {
   constructor(props) {

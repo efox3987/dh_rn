@@ -32,7 +32,6 @@ export default class NewCardModal extends React.Component {
   // This is necessary for it to update the visible value when the plus button is pressed.
   componentDidUpdate(props) {
     if (props.visible !== this.props.visible) {
-      console.log('update modal');
       this.setModalVisible(this.props.visible);
     }
   }

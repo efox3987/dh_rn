@@ -1,28 +1,21 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  FlatList,
-  ScrollView,
-  TouchableOpacity,
-  Modal,
-} from 'react-native';
-import {TimeCard} from '../../components/TimeCard/TimeCard';
-import Icon from 'react-native-vector-icons/AntDesign';
-import NewCardModal from '../../components/NewCardModal';
+import {View, FlatList, TouchableOpacity} from 'react-native';
+
 import {styles} from './styles';
 import CardContext from '../../context/CardContext';
+import {TimeCard} from '../../components/TimeCard/TimeCard';
+import NewCardModal from '../../components/NewCardModal';
+
+import Icon from 'react-native-vector-icons/AntDesign';
 
 class Home extends React.Component {
+  static contextType = CardContext;
   constructor(props) {
     super(props);
     this.state = {
       showTaskModal: false,
     };
   }
-  static contextType = CardContext;
-
   showModal() {
     this.setState({showTaskModal: true});
   }
@@ -45,7 +38,6 @@ class Home extends React.Component {
         />
         <View style={styles.main}>
           <FlatList
-            style={styles.listView}
             data={this.context.timeCards}
             renderItem={({item}) => (
               <TimeCard
