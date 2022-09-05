@@ -19,12 +19,7 @@ function Summary() {
 
   return (
     <View style={styles.main}>
-      <Text>List</Text>
-      <FlatList
-        style={{color: 'red'}}
-        data={timeCards}
-        renderItem={({item}) => renderCard(item)}
-      />
+      <FlatList data={timeCards} renderItem={({item}) => renderCard(item)} />
     </View>
   );
 }
