@@ -22,12 +22,11 @@ export default class BlinkingColon extends Component {
     if (this.props.running === false) {
       return <Text>:</Text>;
     } else {
-      let display = this.state.showText ? (
+      return this.state.showText ? (
         <Text>:</Text>
       ) : (
         <Text style={{opacity: 0.0}}>:</Text>
       );
-      return display;
     }
   }
 }

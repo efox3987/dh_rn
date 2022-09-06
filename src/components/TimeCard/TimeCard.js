@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
   },
   iconView: {
     flex: 1,
+    paddingRight: 5,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -73,9 +74,10 @@ const styles = StyleSheet.create({
   },
   timerView: {
     flex: 2,
-    paddingRight: 10,
+    minWidth: 35,
+    //paddingRight: 10,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-end',
   },
   smallTitle: {
     fontSize: 17,

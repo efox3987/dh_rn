@@ -9,7 +9,7 @@ class Timer extends React.Component {
     super(props);
     this.state = {
       running: false,
-      time: 58,
+      time: /*320280*/ 58,
     };
   }
 
