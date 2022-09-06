@@ -35,13 +35,13 @@ const App = () => {
               shadowColor: 'transparent',
             },
             headerStyle: {
-              height: 100,
+              height: 80,
               backgroundColor: theme.COLOR_SURFACE_LOW,
               shadowColor: 'transparent',
             },
             headerTitleStyle: {
               color: theme.COLOR_PRIMARY,
-              fontSize: theme.FONT_SIZE_HUGE,
+              fontSize: theme.FONT_SIZE_HEADER,
             },
             headerTitle: 'dh',
           })}>

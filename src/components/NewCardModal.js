@@ -8,6 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import CardContext from '../context/CardContext';
+import ActivityContext from '../context/ActivityContext';
 import theme from '../style/theme';
 
 export default class NewCardModal extends React.Component {
@@ -27,6 +28,7 @@ export default class NewCardModal extends React.Component {
 
   closeModal() {
     this.props.onClose(false);
+    this.setState({title: '', notes: ''});
   }
 
   // This is necessary for it to update the visible value when the plus button is pressed.
@@ -59,6 +61,7 @@ export default class NewCardModal extends React.Component {
         style={styles.modalView}
         animationType="slide"
         transparent={true}
+        //presentationStyle="formSheet"
         visible={this.state.modalVisible}
         onRequestClose={() => {
           this.closeModal();

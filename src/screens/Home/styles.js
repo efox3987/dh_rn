@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
   },
   plus: {
     //This shadow needs work idk how to get it just on the outside of the icon...
-    color: theme.COLOR_PRIMARY_VAR,
+    color: theme.COLOR_SECONDARY,
     shadowColor: '#',
     shadowOffset: {width: 0, height: 0},
     shadowOpacity: 0.5,

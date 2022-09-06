@@ -1,10 +1,11 @@
-import {ThemeStyle} from '../types/ThemeStyle';
+import { ThemeStyle } from '../types/ThemeStyle';
 
 const theme: ThemeStyle = {
   FONT_SIZE_TINY: 13,
   FONT_SIZE_BODY: 15,
   FONT_SIZE_TITLE: 17,
   FONT_SIZE_HUGE: 34,
+  FONT_SIZE_HEADER: 25,
 
   COLOR_PRIMARY: '#AD70FB',
   COLOR_PRIMARY_VAR: '#771EE7',

@@ -3,6 +3,7 @@ export declare type ThemeStyle = {
   FONT_SIZE_BODY: number;
   FONT_SIZE_TITLE: number;
   FONT_SIZE_HUGE: number;
+  FONT_SIZE_HEADER: number;
 
   COLOR_PRIMARY: string;
   COLOR_PRIMARY_VAR: string;

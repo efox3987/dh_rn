@@ -15,3 +15,5 @@ export function ActivityProvider({children}) {
   const addTimeToActivity = (timeCard, activities) => {};
   return <ActivityContext.Provider>{children}</ActivityContext.Provider>;
 }
+
+export default ActivityContext;

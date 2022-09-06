@@ -2,12 +2,15 @@
 // It doesn't work, though, not sure why. Might be able to apply these concepts
 // to animating within the Timer.view.js file.
 import React from 'react';
-import {Animated, View} from 'react-native';
+import {Animated, View, Text} from 'react-native';
 
 export default class Blink extends React.Component {
   constructor(props) {
     super(props);
     this.fadeAnimation = new Animated.Value(1);
+    this.state = {
+      running: props.running,
+    };
   }
 
   componentDidMount() {
@@ -25,13 +28,14 @@ export default class Blink extends React.Component {
         }),
       ]),
     );
+    console.log('penis');
   }
 
   render() {
     return (
       <View style={{...this.props.style}}>
         <Animated.View style={{opacity: this.fadeAnimation}}>
-          {this.props.children}
+          <Text>:</Text>
         </Animated.View>
       </View>
     );

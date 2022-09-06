@@ -2,14 +2,14 @@ import {Linter} from 'eslint';
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 import theme from '../../style/theme';
-// import Blink from '../../util/Blink';
+import BlinkingColon from './BlinkingColon';
 
 class Timer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       running: false,
-      time: 0,
+      time: 58,
     };
   }
 
@@ -18,6 +18,9 @@ class Timer extends React.Component {
     this.state.running = !this.state.running;
     console.log(this.state.running);
     this.state.running ? this.start() : this.stop();
+    // Component did update instead of this?
+    // Used to make sure timer stops blinking when you click it
+    this.forceUpdate();
   };
 
   stop = () => {
@@ -43,10 +46,11 @@ class Timer extends React.Component {
       // Seconds only.
       return <Text style={styles.main}>{this.state.time}s</Text>;
     } else {
+      // Minutes and hours.
       return (
-        // Minutes and hours.
         <Text style={styles.main}>
-          {hours}:
+          {hours}
+          <BlinkingColon running={this.state.running} />
           {minutes < 10 ? <Text>0{minutes}</Text> : <Text>{minutes}</Text>}
         </Text>
       );

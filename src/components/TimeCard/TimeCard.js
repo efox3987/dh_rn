@@ -68,10 +68,12 @@ const styles = StyleSheet.create({
   textView: {
     flex: 7,
     flexDirection: 'column',
+    paddingRight: 10,
     justifyContent: 'center',
   },
   timerView: {
     flex: 2,
+    paddingRight: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },
