@@ -38,6 +38,13 @@ class Home extends React.Component {
         />
         <View style={styles.main}>
           <FlatList
+            ref={ref => {
+              this.flatList = ref;
+            }}
+            onContentSizeChange={() =>
+              this.flatList.scrollToEnd({animated: true})
+            }
+            contentContainerStyle={styles.flatList}
             data={this.context.timeCards}
             renderItem={({item}) => (
               <TimeCard

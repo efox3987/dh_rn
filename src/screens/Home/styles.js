@@ -12,6 +12,9 @@ export const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
   },
+  flatList: {
+    paddingBottom: 10,
+  },
   preview: {
     flex: 2,
   },
