@@ -7,6 +7,7 @@ import {styles} from './styles';
 import CardContext from '../../context/CardContext';
 import {TimeCard} from '../../components/TimeCard/TimeCard';
 import NewCardModal from '../../components/NewCardModal';
+import ActivityPreview from '../../components/ActivityPreview';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -58,21 +59,21 @@ class Home extends React.Component {
             )}
           />
         </View>
-        <View style={styles.preview}>
-          <View style={styles.plusView}>
-            <TouchableOpacity>
-              <Icon
-                style={styles.plus}
-                name={'pluscircle'}
-                size={45}
-                onPress={() =>
-                  SheetManager.show('example-sheet', {
-                    payload: {value: 'Hello World'},
-                  })
-                }
-              />
-            </TouchableOpacity>
-          </View>
+        <ActivityPreview />
+        <View style={styles.plusView}>
+          <TouchableOpacity>
+            <Icon
+              style={styles.plus}
+              name={'pluscircle'}
+              size={45}
+              onPress={() =>
+                // SheetManager.show('example-sheet', {
+                //   payload: {value: 'hello world'},
+                // })
+                this.showModal()
+              }
+            />
+          </TouchableOpacity>
         </View>
       </View>
     );
