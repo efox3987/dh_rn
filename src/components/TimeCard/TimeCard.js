@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import theme from '../../style/theme';
 import Timer from './Timer.view';
@@ -10,6 +10,7 @@ export class TimeCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      onPress: props.onPress,
       title: props.title,
       notes: props.notes,
       timeCreated: props.timeCreated,
@@ -20,7 +21,7 @@ export class TimeCard extends React.Component {
     // let minutes = this.props.timeCreated.getMinutes();
 
     return (
-      <View style={styles.wrapper}>
+      <TouchableOpacity style={styles.wrapper} onPress={this.state.onPress}>
         <View style={styles.card}>
           <View style={styles.iconView}>
             <Icon name="drag-indicator" size={40} color={'#6C6C6A'} />
@@ -36,7 +37,7 @@ export class TimeCard extends React.Component {
         <Text style={styles.createdTime}>
           {this.props.hour}:{this.props.minutes}
         </Text>
-      </View>
+      </TouchableOpacity>
     );
   }
 }

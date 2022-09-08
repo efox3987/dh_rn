@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   flatList: {
-    paddingBottom: 10,
+    paddingBottom: 20,
   },
   preview: {
     flex: 2,

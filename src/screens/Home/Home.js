@@ -7,6 +7,8 @@ import {styles} from './styles';
 import CardContext from '../../context/CardContext';
 import {TimeCard} from '../../components/TimeCard/TimeCard';
 import NewCardModal from '../../components/NewCardModal';
+import ActivityPreview from '../../components/ActivityPreview';
+import FloatingButton from '../../components/FloatingButton';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -16,8 +18,21 @@ class Home extends React.Component {
     super(props);
     this.state = {
       showTaskModal: false,
+      // selectedCard: {
+      //   title: null,
+      //   notes: null,
+      //   createdTime: null,
+      // },
+      selectedCardIndex: null,
+      showPreview: false,
     };
   }
+
+  componentDidUpdate(props, state) {
+    if (state.selectedCardIndex === this.state.selectedCardIndex) {
+    }
+  }
+
   showModal() {
     this.setState({showTaskModal: true});
   }
@@ -28,6 +43,18 @@ class Home extends React.Component {
 
   setModalVisible = visible => {
     this.setState({showTaskModal: visible});
+  };
+
+  timeCardOnPress = index => {
+    console.log(index);
+    console.log(this.context.timeCards[index].title);
+    this.setState({selectedCardIndex: index});
+
+    this.setState({showPreview: true});
+  };
+
+  renderPreview = () => {
+    return <ActivityPreview selectedCardIndex={this.state.selectedCardIndex} />;
   };
 
   render() {
@@ -48,31 +75,47 @@ class Home extends React.Component {
             }
             contentContainerStyle={styles.flatList}
             data={this.context.timeCards}
-            renderItem={({item}) => (
+            renderItem={({item, index}) => (
               <TimeCard
                 title={item.title}
                 notes={item.notes}
                 hour={item.createdTime.getHours()}
                 minutes={item.createdTime.getMinutes()}
+                onPress={() =>
+                  index !== this.state.selectedCardIndex
+                    ? this.timeCardOnPress(index)
+                    : this.setState({
+                        showPreview: false,
+                        selectedCardIndex: null,
+                      })
+                }
               />
             )}
           />
         </View>
-        <View style={styles.preview}>
-          <View style={styles.plusView}>
-            <TouchableOpacity>
-              <Icon
-                style={styles.plus}
-                name={'pluscircle'}
-                size={45}
-                onPress={() =>
-                  SheetManager.show('example-sheet', {
-                    payload: {value: 'Hello World'},
-                  })
-                }
-              />
-            </TouchableOpacity>
-          </View>
+        {this.state.showPreview ? this.renderPreview() : null}
+        {/* <FloatingButton
+          onPress={
+            this.showModal()
+            // SheetManager.show('example-sheet', {
+            //   payload: {value: 'hello world'},
+            // })
+          }
+        /> */}
+        <View style={styles.plusView}>
+          <TouchableOpacity>
+            <Icon
+              style={styles.plus}
+              name={'pluscircle'}
+              size={45}
+              onPress={() =>
+                // SheetManager.show('example-sheet', {
+                //   payload: {value: 'hello world'},
+                // })
+                this.showModal()
+              }
+            />
+          </TouchableOpacity>
         </View>
       </View>
     );
