@@ -10,6 +10,7 @@ import Analysis from './screens/Analysis';
 import theme from './style/theme';
 import {CardProvider} from './context/CardContext';
 import {SheetProvider} from 'react-native-actions-sheet';
+import './components/sheets.tsx';
 
 const Tab = createBottomTabNavigator();
 

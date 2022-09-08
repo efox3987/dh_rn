@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, FlatList, TouchableOpacity} from 'react-native';
 
+import {SheetManager} from 'react-native-actions-sheet';
+
 import {styles} from './styles';
 import CardContext from '../../context/CardContext';
 import {TimeCard} from '../../components/TimeCard/TimeCard';
@@ -63,7 +65,11 @@ class Home extends React.Component {
                 style={styles.plus}
                 name={'pluscircle'}
                 size={45}
-                onPress={() => this.showModal()}
+                onPress={() =>
+                  SheetManager.show('example-sheet', {
+                    payload: {value: 'Hello World'},
+                  })
+                }
               />
             </TouchableOpacity>
           </View>

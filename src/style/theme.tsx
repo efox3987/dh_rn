@@ -1,4 +1,4 @@
-import { ThemeStyle } from '../types/ThemeStyle';
+import {ThemeStyle} from '../types/ThemeStyle';
 
 const theme: ThemeStyle = {
   FONT_SIZE_TINY: 13,
