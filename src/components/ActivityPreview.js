@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Animated} from 'react-native';
 
 import theme from './../style/theme';
 
@@ -8,20 +8,20 @@ import CardContext from '../context/CardContext';
 export default class ActivityPreview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      displayCard: null,
-    };
   }
 
   static contextType = CardContext;
 
   render() {
+    console.log('SUCCESS');
     return (
-      <View style={styles.main}>
+      <Animated.View style={styles.main}>
         <View style={styles.card}>
-          <Text>hello world</Text>
+          <Text>
+            {this.context.timeCards[this.props.selectedCardIndex].title}
+          </Text>
         </View>
-      </View>
+      </Animated.View>
     );
   }
 }
@@ -31,14 +31,15 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 2,
     backgroundColor: theme.COLOR_BACKGROUND,
-    margin: 20,
+    marginBottom: 20,
+    marginHorizontal: 10,
   },
   card: {
+    height: '100%',
     justifyContent: 'space-between',
-    backgroundColor: theme.COLOR_SURFACE_MID,
+    backgroundColor: theme.COLOR_SURFACE_LOW,
     paddingRight: 10,
     paddingVertical: 15,
-    height: '100%',
     borderRadius: 10,
     shadowColor: theme.TEXT_BLACK,
     shadowOffset: {width: 0, height: 1},
