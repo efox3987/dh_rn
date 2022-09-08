@@ -1,5 +1,6 @@
-import React from 'react';
-import {View, StyleSheet, Text, FlatList} from 'react-native';
+import React, {useRef} from 'react';
+import {View, StyleSheet, Text, FlatList, Button} from 'react-native';
+import {Example} from '../components/BottomSheet';
 import Summary from '../components/Summary';
 import theme from '../style/theme';
 
