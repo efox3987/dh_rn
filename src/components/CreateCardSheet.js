@@ -6,6 +6,8 @@ import {TextInput} from 'react-native-paper';
 import CardContext from '../context/CardContext';
 import ActivityContext from '../context/ActivityContext';
 
+import Icon from 'react-native-vector-icons/Entypo';
+
 import theme from '../style/theme';
 import DHButton from './Isolated/DHButton';
 
@@ -46,6 +48,20 @@ function CreateCardSheet(props) {
             setValue={setValue}
             setOpen={setOpen}
             placeholder={'Select an activity'}
+            ArrowDownIconComponent={style => (
+              <Icon
+                name={'chevron-down'}
+                color={theme.COLOR_SURFACE_HIGH}
+                size={25}
+              />
+            )}
+            ArrowUpIconComponent={style => (
+              <Icon
+                name={'chevron-up'}
+                color={theme.COLOR_SURFACE_HIGH}
+                size={25}
+              />
+            )}
             placeholderStyle={styles.dropdownPlaceholder}
             style={styles.dropdown}
             dropDownContainerStyle={styles.dropdownContainerStyle}
