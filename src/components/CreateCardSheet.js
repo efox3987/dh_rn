@@ -16,7 +16,7 @@ function CreateCardSheet(props) {
   };
 
   const onChangeNotes = text => {
-    setNotes(notes);
+    setNotes(text);
   };
 
   const onSaveCard = () => {
@@ -64,7 +64,7 @@ function CreateCardSheet(props) {
               },
             }}
             placeholderTextColor={theme.COLOR_SURFACE_HIGH}
-            onChangeText={text => onChangeTitle()}
+            onChangeText={text => onChangeTitle(text)}
           />
           <TextInput
             mode={'flat'}
@@ -82,7 +82,7 @@ function CreateCardSheet(props) {
               },
             }}
             placeholderTextColor={theme.COLOR_SURFACE_HIGH}
-            onChangeText={text => onChangeNotes()}
+            onChangeText={text => onChangeNotes(text)}
           />
         </View>
         <View style={styles.buttonContainer}>
