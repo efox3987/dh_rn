@@ -15,6 +15,7 @@ const Analysis = () => {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: theme.COLOR_BACKGROUND,

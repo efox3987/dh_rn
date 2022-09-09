@@ -1,10 +1,12 @@
 import React, {useContext} from 'react';
 import {View, Text, FlatList, StyleSheet} from 'react-native';
+import ActivityContext from '../context/ActivityContext';
 import CardContext from '../context/CardContext';
 import theme from '../style/theme';
 
 function Summary() {
   const {timeCards} = useContext(CardContext);
+  const {activities} = useContext(ActivityContext);
 
   const renderCard = item => {
     return (

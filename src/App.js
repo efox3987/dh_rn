@@ -11,48 +11,51 @@ import theme from './style/theme';
 import {CardProvider} from './context/CardContext';
 import {SheetProvider} from 'react-native-actions-sheet';
 import './components/sheets.tsx';
+import {ActivityProvider} from './context/ActivityContext';
 
 const Tab = createBottomTabNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <CardProvider>
-        <SheetProvider>
-          <Tab.Navigator
-            screenOptions={({route}) => ({
-              tabBarIcon: ({focused, color, size}) => {
-                let iconName;
+      <ActivityProvider>
+        <CardProvider>
+          <SheetProvider>
+            <Tab.Navigator
+              screenOptions={({route}) => ({
+                tabBarIcon: ({focused, color, size}) => {
+                  let iconName;
 
-                if (route.name === 'Home') {
-                  iconName = focused ? 'md-home' : 'md-home-outline';
-                  return <Icon name={iconName} size={size} color={color} />;
-                } else if (route.name === 'Analysis') {
-                  iconName = focused ? 'graph' : 'graph-outline';
-                  return <Icon1 name={iconName} size={size} color={color} />;
-                }
-              },
-              tabBarActiveTintColor: theme.COLOR_PRIMARY,
-              tabBarStyle: {
-                backgroundColor: theme.COLOR_SURFACE_LOW,
-                shadowColor: 'transparent',
-              },
-              headerStyle: {
-                height: 80,
-                backgroundColor: theme.COLOR_SURFACE_LOW,
-                shadowColor: 'transparent',
-              },
-              headerTitleStyle: {
-                color: theme.COLOR_PRIMARY,
-                fontSize: theme.FONT_SIZE_HEADER,
-              },
-              headerTitle: 'dh',
-            })}>
-            <Tab.Screen name="Home" component={Home} />
-            <Tab.Screen name="Analysis" component={Analysis} />
-          </Tab.Navigator>
-        </SheetProvider>
-      </CardProvider>
+                  if (route.name === 'Home') {
+                    iconName = focused ? 'md-home' : 'md-home-outline';
+                    return <Icon name={iconName} size={size} color={color} />;
+                  } else if (route.name === 'Analysis') {
+                    iconName = focused ? 'graph' : 'graph-outline';
+                    return <Icon1 name={iconName} size={size} color={color} />;
+                  }
+                },
+                tabBarActiveTintColor: theme.COLOR_PRIMARY,
+                tabBarStyle: {
+                  backgroundColor: theme.COLOR_SURFACE_LOW,
+                  shadowColor: 'transparent',
+                },
+                headerStyle: {
+                  height: 80,
+                  backgroundColor: theme.COLOR_SURFACE_LOW,
+                  shadowColor: 'transparent',
+                },
+                headerTitleStyle: {
+                  color: theme.COLOR_PRIMARY,
+                  fontSize: theme.FONT_SIZE_HEADER,
+                },
+                headerTitle: 'dh',
+              })}>
+              <Tab.Screen name="Home" component={Home} />
+              <Tab.Screen name="Analysis" component={Analysis} />
+            </Tab.Navigator>
+          </SheetProvider>
+        </CardProvider>
+      </ActivityProvider>
     </NavigationContainer>
   );
 };

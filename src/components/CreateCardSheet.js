@@ -1,15 +1,21 @@
 import React, {useState, useContext} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import ActionSheet, {SheetManager} from 'react-native-actions-sheet';
+import DropDownPicker from 'react-native-dropdown-picker';
 import {TextInput} from 'react-native-paper';
 import CardContext from '../context/CardContext';
+import ActivityContext from '../context/ActivityContext';
+
 import theme from '../style/theme';
 import DHButton from './Isolated/DHButton';
 
 function CreateCardSheet(props) {
   const [title, setTitle] = useState('');
   const [notes, setNotes] = useState('');
-  const context = useContext(CardContext);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const cardContext = useContext(CardContext);
+  const {activities} = useContext(ActivityContext);
 
   const onChangeTitle = text => {
     setTitle(text);
@@ -20,7 +26,7 @@ function CreateCardSheet(props) {
   };
 
   const onSaveCard = () => {
-    context.addCard(title, notes);
+    cardContext.addCard(title, notes);
     SheetManager.hide('create-card');
   };
 
@@ -32,20 +38,18 @@ function CreateCardSheet(props) {
       gestureEnabled={true}>
       <View style={styles.main}>
         <View style={styles.activityInfo}>
-          <TextInput
-            mode={'flat'}
-            label={'Activity'}
-            style={styles.input}
-            underlineColor={theme.COLOR_SURFACE_HIGH}
-            selectionColor={theme.COLOR_PRIMARY}
-            activeUnderlineColor={theme.COLOR_SECONDARY}
-            theme={{
-              colors: {
-                text: theme.COLOR_TEXT_WHITE,
-                placeholder: theme.COLOR_TEXT_INACTIVE,
-              },
-            }}
-            placeholderTextColor={theme.COLOR_SURFACE_HIGH}
+          <DropDownPicker
+            schema={{label: 'activityTitle', value: 'activityTitle'}}
+            open={open}
+            items={activities}
+            value={value}
+            setValue={setValue}
+            setOpen={setOpen}
+            placeholder={'Select an activity'}
+            placeholderStyle={styles.dropdownPlaceholder}
+            style={styles.dropdown}
+            dropDownContainerStyle={styles.dropdownContainerStyle}
+            textStyle={styles.dropdownText}
           />
         </View>
         <View style={styles.timeCardInfo}>
@@ -132,6 +136,22 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
+  },
+  dropdown: {
+    backgroundColor: theme.COLOR_SURFACE_LOW,
+    borderColor: theme.COLOR_SURFACE_HIGH,
+  },
+  dropdownContainerStyle: {
+    backgroundColor: theme.COLOR_SURFACE_MID,
+    borderColor: theme.COLOR_SURFACE_HIGH,
+  },
+  dropdownText: {
+    color: theme.COLOR_TEXT_WHITE,
+    fontSize: theme.FONT_SIZE_TITLE,
+  },
+  dropdownPlaceholder: {
+    color: theme.COLOR_TEXT_INACTIVE,
+    fontSize: theme.FONT_SIZE_TITLE,
   },
 });
 
