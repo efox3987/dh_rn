@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import ActionSheet, {SheetManager} from 'react-native-actions-sheet';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {TextInput} from 'react-native-paper';
@@ -67,6 +67,9 @@ function CreateCardSheet(props) {
             dropDownContainerStyle={styles.dropdownContainerStyle}
             textStyle={styles.dropdownText}
           />
+          <TouchableOpacity style={styles.addActivity}>
+            <Text style={styles.addActivityText}>Add an activity +</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.timeCardInfo}>
           <TextInput
@@ -168,6 +171,13 @@ const styles = StyleSheet.create({
   dropdownPlaceholder: {
     color: theme.COLOR_TEXT_INACTIVE,
     fontSize: theme.FONT_SIZE_TITLE,
+  },
+  addActivity: {
+    margin: 5,
+  },
+  addActivityText: {
+    fontSize: theme.FONT_SIZE_BODY,
+    color: theme.COLOR_TEXT_INACTIVE,
   },
 });
 
