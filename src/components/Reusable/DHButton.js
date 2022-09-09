@@ -2,6 +2,10 @@ import React from 'react';
 import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
 import theme from '../../style/theme';
 
+// Props
+// title: string - required to name text in the button
+// primary: boolean - true = filled in button | false = outlined button
+
 export default class DHButton extends React.Component {
   constructor(props) {
     super(props);
@@ -20,9 +24,14 @@ export default class DHButton extends React.Component {
         <TouchableOpacity onPress={this.props.onPress}>
           <View
             style={
-              this.props.secondary ? styles.viewSecondary : styles.viewPrimary
+              this.props.primary ? styles.viewPrimary : styles.viewSecondary
             }>
-            <Text style={styles.text}>{this.props.title.toUpperCase()}</Text>
+            <Text
+              style={
+                this.props.primary ? styles.textPrimary : styles.textSecondary
+              }>
+              {this.props.title.toUpperCase()}
+            </Text>
           </View>
         </TouchableOpacity>
       </React.Fragment>
@@ -40,12 +49,15 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   viewSecondary: {
-    backgroundColor: theme.COLOR_SECONDARY,
+    bacgkroundColor: 'rgba(52, 52, 52, 0)',
     alignSelf: 'stretch',
     margin: 15,
     paddingHorizontal: 30,
     paddingVertical: 10,
+    borderColor: theme.COLOR_PRIMARY,
+    borderWidth: 1,
     borderRadius: 25,
   },
-  text: {fontWeight: '600'},
+  textPrimary: {fontWeight: '600'},
+  textSecondary: {fontWeight: '600', color: theme.COLOR_PRIMARY},
 });

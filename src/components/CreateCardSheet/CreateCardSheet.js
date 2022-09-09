@@ -3,14 +3,15 @@ import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import ActionSheet, {SheetManager} from 'react-native-actions-sheet';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {TextInput} from 'react-native-paper';
-import CardContext from '../context/CardContext';
-import ActivityContext from '../context/ActivityContext';
+import CardContext from '../../context/CardContext';
+import ActivityContext from '../../context/ActivityContext';
 
 import Icon from 'react-native-vector-icons/Entypo';
 
-import theme from '../style/theme';
-import DHButton from './Reusable/DHButton';
-import StyledInput from './Reusable/StyledInput';
+import theme from '../../style/theme';
+import DHButton from '../Reusable/DHButton';
+import StyledInput from '../Reusable/StyledInput';
+import CreateActivity from './CreateActivity.view';
 
 function CreateCardSheet(props) {
   const [title, setTitle] = useState('');
@@ -35,12 +36,30 @@ function CreateCardSheet(props) {
     SheetManager.hide('create-card');
   };
 
-  const showCreateActivity = () => {};
-
-  const renderCreateActivity = () => {
-    return <View />;
+  const showCreateActivity = () => {
+    setNewVisible(true);
   };
 
+  const renderCreateActivity = () => {
+    return <CreateActivity onPressCancel={onPressCancel} />;
+  };
+
+  const onPressCancel = () => {
+    setNewVisible(false);
+  };
+
+  const renderNameCard = () => {
+    return (
+      <View style={styles.timeCardInfo}>
+        <StyledInput title={'Card Name'} onChangeText={onChangeTitle} />
+        <StyledInput
+          title={'Notes'}
+          onChangeText={onChangeNotes}
+          multiline={true}
+        />
+      </View>
+    );
+  };
   const onSaveActivity = () => {};
 
   return (
@@ -80,20 +99,14 @@ function CreateCardSheet(props) {
           />
           <TouchableOpacity
             style={styles.addActivity}
-            onPress={showCreateActivity()}>
+            onPress={showCreateActivity}>
             <Text style={styles.addActivityText}>Add an activity +</Text>
           </TouchableOpacity>
+          {newVisible ? renderCreateActivity() : null}
         </View>
-        <View style={styles.timeCardInfo}>
-          <StyledInput title={'Card Name'} onChangeText={onChangeTitle} />
-          <StyledInput
-            title={'Notes'}
-            onChangeText={onChangeNotes}
-            multiline={true}
-          />
-        </View>
+        {newVisible ? null : renderNameCard()}
         <View style={styles.buttonContainer}>
-          <DHButton title={'Save'} onPress={onSaveCard} />
+          <DHButton title={'Save'} onPress={onSaveCard} primary={true} />
         </View>
       </View>
     </ActionSheet>
@@ -113,12 +126,6 @@ const styles = StyleSheet.create({
   indicator: {
     backgroundColor: theme.COLOR_SURFACE_HIGH,
     width: '25%',
-  },
-  input: {
-    backgroundColor: theme.COLOR_SURFACE_LOW,
-    fontSize: theme.FONT_SIZE_TITLE,
-    marginHorizontal: 5,
-    marginBottom: 5,
   },
   activityInfo: {
     backgroundColor: theme.COLOR_SURFACE_LOW,
@@ -163,6 +170,7 @@ const styles = StyleSheet.create({
   addActivityText: {
     fontSize: theme.FONT_SIZE_BODY,
     color: theme.COLOR_TEXT_INACTIVE,
+    alignSelf: 'flex-end',
   },
 });
 

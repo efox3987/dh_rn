@@ -35,6 +35,7 @@ export default class StyledInput extends React.Component {
         }}
         placeholderTextColor={theme.COLOR_SURFACE_HIGH}
         onChangeText={text => this.props.onChangeText(text)}
+        maxLength={256}
       />
     );
   }
