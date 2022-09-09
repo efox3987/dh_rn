@@ -9,13 +9,16 @@ import ActivityContext from '../context/ActivityContext';
 import Icon from 'react-native-vector-icons/Entypo';
 
 import theme from '../style/theme';
-import DHButton from './Isolated/DHButton';
+import DHButton from './Reusable/DHButton';
+import StyledInput from './Reusable/StyledInput';
 
 function CreateCardSheet(props) {
   const [title, setTitle] = useState('');
   const [notes, setNotes] = useState('');
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
+  const [newVisible, setNewVisible] = useState(false);
+
   const cardContext = useContext(CardContext);
   const {activities} = useContext(ActivityContext);
 
@@ -31,6 +34,14 @@ function CreateCardSheet(props) {
     cardContext.addCard(title, notes);
     SheetManager.hide('create-card');
   };
+
+  const showCreateActivity = () => {};
+
+  const renderCreateActivity = () => {
+    return <View />;
+  };
+
+  const onSaveActivity = () => {};
 
   return (
     <ActionSheet
@@ -67,45 +78,18 @@ function CreateCardSheet(props) {
             dropDownContainerStyle={styles.dropdownContainerStyle}
             textStyle={styles.dropdownText}
           />
-          <TouchableOpacity style={styles.addActivity}>
+          <TouchableOpacity
+            style={styles.addActivity}
+            onPress={showCreateActivity()}>
             <Text style={styles.addActivityText}>Add an activity +</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.timeCardInfo}>
-          <TextInput
-            mode={'flat'}
-            label={'Card Name'}
-            dense={true}
-            style={styles.input}
-            underlineColor={theme.COLOR_SURFACE_HIGH}
-            selectionColor={theme.COLOR_PRIMARY}
-            activeUnderlineColor={theme.COLOR_SECONDARY}
-            theme={{
-              colors: {
-                text: theme.COLOR_TEXT_WHITE,
-                placeholder: theme.COLOR_TEXT_INACTIVE,
-              },
-            }}
-            placeholderTextColor={theme.COLOR_SURFACE_HIGH}
-            onChangeText={text => onChangeTitle(text)}
-          />
-          <TextInput
-            mode={'flat'}
-            label={'Notes'}
-            dense={true}
-            style={styles.input}
-            underlineColor={theme.COLOR_SURFACE_HIGH}
-            selectionColor={theme.COLOR_PRIMARY}
-            activeUnderlineColor={theme.COLOR_SECONDARY}
+          <StyledInput title={'Card Name'} onChangeText={onChangeTitle} />
+          <StyledInput
+            title={'Notes'}
+            onChangeText={onChangeNotes}
             multiline={true}
-            theme={{
-              colors: {
-                text: theme.COLOR_TEXT_WHITE,
-                placeholder: theme.COLOR_TEXT_INACTIVE,
-              },
-            }}
-            placeholderTextColor={theme.COLOR_SURFACE_HIGH}
-            onChangeText={text => onChangeNotes(text)}
           />
         </View>
         <View style={styles.buttonContainer}>
@@ -173,7 +157,8 @@ const styles = StyleSheet.create({
     fontSize: theme.FONT_SIZE_TITLE,
   },
   addActivity: {
-    margin: 5,
+    marginHorizontal: 10,
+    marginTop: 10,
   },
   addActivityText: {
     fontSize: theme.FONT_SIZE_BODY,
