@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     height: 90,
     borderRadius: 10,
-    shadowColor: theme.TEXT_BLACK,
+    shadowColor: theme.COLOR_TEXT_BLACK,
     shadowOffset: {width: 0, height: 1},
     shadowOpacity: 0.5,
     shadowRadius: 3,
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     paddingTop: 5,
     paddingRight: 30,
-    color: theme.TEXT_WHITE,
+    color: theme.COLOR_TEXT_WHITE,
     fontSize: theme.FONT_SIZE_TINY,
   },
 });

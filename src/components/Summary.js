@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   text: {
-    color: theme.TEXT_WHITE,
+    color: theme.COLOR_TEXT_WHITE,
   },
 });
 

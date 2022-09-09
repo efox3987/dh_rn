@@ -16,6 +16,7 @@ export declare type ThemeStyle = {
   COLOR_SURFACE_MID: string;
   COLOR_SURFACE_HIGH: string;
 
-  TEXT_WHITE: string;
-  TEXT_BLACK: string;
+  COLOR_TEXT_WHITE: string;
+  COLOR_TEXT_BLACK: string;
+  COLOR_TEXT_INACTIVE: string;
 };

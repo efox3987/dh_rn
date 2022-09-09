@@ -112,7 +112,7 @@ class Home extends React.Component {
                 // SheetManager.show('example-sheet', {
                 //   payload: {value: 'hello world'},
                 // })
-                this.showModal()
+                SheetManager.show('create-card')
               }
             />
           </TouchableOpacity>

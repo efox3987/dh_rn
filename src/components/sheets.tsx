@@ -1,5 +1,5 @@
 import {registerSheet} from 'react-native-actions-sheet';
-import ExampleSheet from './example-sheet';
+import CreateCardSheet from './CreateCardSheet';
 
-registerSheet('example-sheet', ExampleSheet);
+registerSheet('create-card', CreateCardSheet);
 export {};

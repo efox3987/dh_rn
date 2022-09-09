@@ -76,6 +76,6 @@ const styles = StyleSheet.create({
   main: {
     fontWeight: 'bold',
     fontSize: theme.FONT_SIZE_HUGE,
-    color: theme.TEXT_WHITE,
+    color: theme.COLOR_TEXT_WHITE,
   },
 });

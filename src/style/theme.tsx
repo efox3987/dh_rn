@@ -18,8 +18,9 @@ const theme: ThemeStyle = {
   COLOR_SURFACE_MID: '#3C393C',
   COLOR_SURFACE_HIGH: '#454245',
 
-  TEXT_WHITE: '#FFFFFF',
-  TEXT_BLACK: '#000000',
+  COLOR_TEXT_WHITE: '#FFFFFF',
+  COLOR_TEXT_BLACK: '#000000',
+  COLOR_TEXT_INACTIVE: '#6B6D6B',
 };
 
 export default theme;
