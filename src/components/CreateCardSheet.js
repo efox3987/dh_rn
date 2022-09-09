@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
-import ActionSheet from 'react-native-actions-sheet';
+import ActionSheet, {SheetManager} from 'react-native-actions-sheet';
 import {TextInput} from 'react-native-paper';
 import CardContext from '../context/CardContext';
 import theme from '../style/theme';
@@ -20,10 +20,8 @@ function CreateCardSheet(props) {
   };
 
   const onSaveCard = () => {
-    console.log('In save');
-    console.log(title);
-    console.log(notes);
     context.addCard(title, notes);
+    SheetManager.hide('create-card');
   };
 
   return (

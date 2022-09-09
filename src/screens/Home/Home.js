@@ -6,7 +6,6 @@ import {SheetManager} from 'react-native-actions-sheet';
 import {styles} from './styles';
 import CardContext from '../../context/CardContext';
 import {TimeCard} from '../../components/TimeCard/TimeCard';
-import NewCardModal from '../../components/NewCardModal';
 import ActivityPreview from '../../components/ActivityPreview';
 import FloatingButton from '../../components/FloatingButton';
 
@@ -33,18 +32,6 @@ class Home extends React.Component {
     }
   }
 
-  showModal() {
-    this.setState({showTaskModal: true});
-  }
-
-  onCloseModal = () => {
-    this.setState({showTaskModal: false});
-  };
-
-  setModalVisible = visible => {
-    this.setState({showTaskModal: visible});
-  };
-
   timeCardOnPress = index => {
     console.log(index);
     console.log(this.context.timeCards[index].title);
@@ -60,11 +47,6 @@ class Home extends React.Component {
   render() {
     return (
       <View style={styles.wrapper}>
-        <NewCardModal
-          style={styles.modal}
-          visible={this.state.showTaskModal}
-          onClose={val => this.setModalVisible(val)}
-        />
         <View style={styles.main}>
           <FlatList
             ref={ref => {
