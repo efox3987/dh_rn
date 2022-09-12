@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import theme from '../../style/theme';
@@ -6,40 +6,29 @@ import Timer from './Timer.view';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export class TimeCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      onPress: props.onPress,
-      title: props.title,
-      notes: props.notes,
-      timeCreated: props.timeCreated,
-    };
-  }
-  render() {
-    // let hours = this.props.timeCreated.getHours();
-    // let minutes = this.props.timeCreated.getMinutes();
+export function TimeCard(props) {
+  const [title, setTitle] = useState(props.title);
+  const [notes, setNotes] = useState(props.notes);
 
-    return (
-      <TouchableOpacity style={styles.wrapper} onPress={this.state.onPress}>
-        <View style={styles.card}>
-          <View style={styles.iconView}>
-            <Icon name="drag-indicator" size={40} color={'#6C6C6A'} />
-          </View>
-          <View style={styles.textView}>
-            <Text style={styles.smallTitle}>{this.state.title}</Text>
-            <Text style={styles.subText}>{this.state.notes}</Text>
-          </View>
-          <View style={styles.timerView}>
-            <Timer style={styles.timer} running={this.props.running} />
-          </View>
+  return (
+    <TouchableOpacity style={styles.wrapper} onPress={props.onPress}>
+      <View style={styles.card}>
+        <View style={styles.iconView}>
+          <Icon name="drag-indicator" size={40} color={'#6C6C6A'} />
         </View>
-        <Text style={styles.createdTime}>
-          {this.props.hour}:{this.props.minutes}
-        </Text>
-      </TouchableOpacity>
-    );
-  }
+        <View style={styles.textView}>
+          <Text style={styles.smallTitle}>{title}</Text>
+          <Text style={styles.subText}>{notes}</Text>
+        </View>
+        <View style={styles.timerView}>
+          <Timer style={styles.timer} />
+        </View>
+      </View>
+      <Text style={styles.createdTime}>
+        {props.hour}:{props.minutes}
+      </Text>
+    </TouchableOpacity>
+  );
 }
 
 const styles = StyleSheet.create({

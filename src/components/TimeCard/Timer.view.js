@@ -1,4 +1,3 @@
-import {Linter} from 'eslint';
 import React from 'react';
 import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 import theme from '../../style/theme';
