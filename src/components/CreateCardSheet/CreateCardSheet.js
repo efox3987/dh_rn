@@ -72,7 +72,7 @@ function CreateCardSheet(props) {
   const renderPicker = () => {
     return (
       <DropDownPicker
-        schema={{label: 'activityTitle', value: 'activityTitle'}}
+        schema={{label: 'title', value: 'title'}}
         open={open}
         items={activities}
         value={value}

@@ -19,8 +19,8 @@ const ActivityContext = createContext();
 export function ActivityProvider({children}) {
   const [activities, setActivities] = useState([
     {
-      activityTitle: 'Personal Work',
-      activityNotes: '',
+      title: 'Personal Work',
+      notes: '',
       timeLogged: 0,
       sessions: [
         {
@@ -33,10 +33,10 @@ export function ActivityProvider({children}) {
     },
   ]);
 
-  const createActivity = (title, activityNotes) => {
+  const createActivity = (title, notes) => {
     const newActivity = {
-      activityTitle: title,
-      activityNotes: activityNotes,
+      title: title,
+      notes: notes,
       timeLogged: 0,
       sessions: [],
     };
@@ -45,7 +45,33 @@ export function ActivityProvider({children}) {
     setActivities(prevState => [...prevState, newActivity]);
   };
 
-  const addTimeToActivity = (timeCard, activities) => {};
+  const getIndexByTitle = title => {
+    console.log('Searchgin for: ' + title);
+    console.log(activities);
+
+    activities.forEach((activity, index) => {
+      if (activity.title === title) {
+        console.log('found at' + index);
+        return index;
+      }
+    });
+  };
+
+  const addTimeToActivity = (time, activity) => {
+    console.log('Adding time to ' + activity);
+    var i;
+    activities.forEach((item, index) => {
+      if (item.title === activity) {
+        console.log('found at' + index);
+        i = index;
+      }
+    });
+
+    let item = {...activities[i], timeLogged: time};
+    let items = [...activities];
+    items[i] = item;
+    setActivities(items);
+  };
 
   return (
     <ActivityContext.Provider

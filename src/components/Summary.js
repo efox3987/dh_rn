@@ -19,9 +19,22 @@ function Summary() {
     );
   };
 
+  const renderActivity = item => {
+    return (
+      <View style={styles.listItem}>
+        <Text style={styles.text}>Activity Name: {item.title}</Text>
+        <Text style={styles.text}>Total time logged: {item.timeLogged}</Text>
+      </View>
+    );
+  };
+
   return (
     <View style={styles.main}>
       <FlatList data={timeCards} renderItem={({item}) => renderCard(item)} />
+      <FlatList
+        data={activities}
+        renderItem={({item}) => renderActivity(item)}
+      />
     </View>
   );
 }
@@ -29,9 +42,9 @@ function Summary() {
 const styles = StyleSheet.create({
   main: {
     color: theme.COLOR_SURFACE_LOWEST,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
   },
   listItem: {
     color: 'red',

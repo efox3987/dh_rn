@@ -1,14 +1,25 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import theme from '../../style/theme';
 import Timer from './Timer.view';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import CardContext from '../../context/CardContext';
+import ActivityContext from '../../context/ActivityContext';
 
 export function TimeCard(props) {
   const [title, setTitle] = useState(props.title);
   const [notes, setNotes] = useState(props.notes);
+  const [time, setTime] = useState(0);
+
+  const {logTime} = useContext(ActivityContext);
+
+  const updateTime = newTime => {
+    setTime(newTime);
+    logTime(time, props.activity);
+    console.log('time: ' + time);
+  };
 
   return (
     <TouchableOpacity style={styles.wrapper} onPress={props.onPress}>
@@ -21,7 +32,7 @@ export function TimeCard(props) {
           <Text style={styles.subText}>{notes}</Text>
         </View>
         <View style={styles.timerView}>
-          <Timer style={styles.timer} />
+          <Timer style={styles.timer} onPress={updateTime} />
         </View>
       </View>
       <Text style={styles.createdTime}>

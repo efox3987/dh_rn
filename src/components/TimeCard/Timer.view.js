@@ -24,6 +24,7 @@ class Timer extends React.Component {
 
   stop = () => {
     clearInterval(this.timerId);
+    this.props.onPress(this.state.time);
   };
 
   start = () => {

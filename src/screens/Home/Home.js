@@ -58,6 +58,7 @@ class Home extends React.Component {
                 notes={item.notes}
                 hour={item.createdTime.getHours()}
                 minutes={item.createdTime.getMinutes()}
+                activity={item.activity}
                 onPress={() =>
                   index !== this.state.selectedCardIndex
                     ? this.timeCardOnPress(index)
