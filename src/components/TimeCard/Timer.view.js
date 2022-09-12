@@ -16,7 +16,7 @@ class Timer extends React.Component {
   // Changes state of the timer. Calls timer start or stop methods depending on new state.
   onPress = () => {
     this.state.running = !this.state.running;
-    console.log(this.state.running);
+    console.log('running: ' + this.state.running);
     this.state.running ? this.start() : this.stop();
     // Component did update instead of this?
     // Used to make sure timer stops blinking when you click it
@@ -28,6 +28,7 @@ class Timer extends React.Component {
   };
 
   start = () => {
+    console.log('started');
     const start = Date.now();
     const elapsed = this.state.time;
 

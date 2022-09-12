@@ -27,11 +27,6 @@ class Home extends React.Component {
     };
   }
 
-  componentDidUpdate(props, state) {
-    if (state.selectedCardIndex === this.state.selectedCardIndex) {
-    }
-  }
-
   timeCardOnPress = index => {
     console.log(index);
     console.log(this.context.timeCards[index].title);
@@ -90,12 +85,7 @@ class Home extends React.Component {
               style={styles.plus}
               name={'pluscircle'}
               size={45}
-              onPress={() =>
-                // SheetManager.show('example-sheet', {
-                //   payload: {value: 'hello world'},
-                // })
-                SheetManager.show('create-card')
-              }
+              onPress={() => SheetManager.show('create-card')}
             />
           </TouchableOpacity>
         </View>
