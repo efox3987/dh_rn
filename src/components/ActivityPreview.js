@@ -18,6 +18,7 @@ export default class ActivityPreview extends React.Component {
       <Animated.View style={styles.main}>
         <View style={styles.card}>
           <Text>
+            {this.context.timeCards[this.props.selectedCardIndex].activity}
             {this.context.timeCards[this.props.selectedCardIndex].title}
           </Text>
         </View>

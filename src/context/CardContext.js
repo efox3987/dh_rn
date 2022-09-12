@@ -8,15 +8,21 @@ export function CardProvider({children}) {
       title: 'Default Card',
       notes:
         "Long collection of notes about an activity card that doesn't exist, but has to be here so we can test the text formatting.",
+      activity: 'Personal Work',
       createdTime: new Date(),
     },
   ]);
 
-  const addCard = (title, notes) => {
+  const addCard = (title, notes, activity) => {
     const createdTime = new Date();
     setTimeCards(prevState => [
       ...prevState,
-      {title: title, notes: notes, createdTime: createdTime},
+      {
+        title: title,
+        notes: notes,
+        createdTime: createdTime,
+        activity: activity,
+      },
     ]);
   };
 

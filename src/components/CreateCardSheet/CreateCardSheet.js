@@ -32,20 +32,20 @@ function CreateCardSheet(props) {
   };
 
   const onSaveCard = () => {
-    cardContext.addCard(title, notes);
+    cardContext.addCard(title, notes, value);
     SheetManager.hide('create-card');
   };
 
-  const showCreateActivity = () => {
+  const showActivityView = () => {
     setNewVisible(true);
   };
 
-  const renderCreateActivity = () => {
-    return <CreateActivity onPressCancel={onPressCancel} />;
+  const hideActivityView = () => {
+    setNewVisible(false);
   };
 
-  const onPressCancel = () => {
-    setNewVisible(false);
+  const renderCreateActivityView = () => {
+    return <CreateActivity hide={hideActivityView} />;
   };
 
   const renderNameCard = () => {
@@ -60,7 +60,46 @@ function CreateCardSheet(props) {
       </View>
     );
   };
-  const onSaveActivity = () => {};
+
+  const renderAddActivity = () => {
+    return (
+      <TouchableOpacity style={styles.addActivity} onPress={showActivityView}>
+        <Text style={styles.addActivityText}>Add an activity +</Text>
+      </TouchableOpacity>
+    );
+  };
+
+  const renderPicker = () => {
+    return (
+      <DropDownPicker
+        schema={{label: 'activityTitle', value: 'activityTitle'}}
+        open={open}
+        items={activities}
+        value={value}
+        setValue={setValue}
+        setOpen={setOpen}
+        placeholder={'Select an activity'}
+        ArrowDownIconComponent={style => (
+          <Icon
+            name={'chevron-down'}
+            color={theme.COLOR_SURFACE_HIGH}
+            size={25}
+          />
+        )}
+        ArrowUpIconComponent={style => (
+          <Icon
+            name={'chevron-up'}
+            color={theme.COLOR_SURFACE_HIGH}
+            size={25}
+          />
+        )}
+        placeholderStyle={styles.dropdownPlaceholder}
+        style={styles.dropdown}
+        dropDownContainerStyle={styles.dropdownContainerStyle}
+        textStyle={styles.dropdownText}
+      />
+    );
+  };
 
   return (
     <ActionSheet
@@ -70,39 +109,8 @@ function CreateCardSheet(props) {
       gestureEnabled={true}>
       <View style={styles.main}>
         <View style={styles.activityInfo}>
-          <DropDownPicker
-            schema={{label: 'activityTitle', value: 'activityTitle'}}
-            open={open}
-            items={activities}
-            value={value}
-            setValue={setValue}
-            setOpen={setOpen}
-            placeholder={'Select an activity'}
-            ArrowDownIconComponent={style => (
-              <Icon
-                name={'chevron-down'}
-                color={theme.COLOR_SURFACE_HIGH}
-                size={25}
-              />
-            )}
-            ArrowUpIconComponent={style => (
-              <Icon
-                name={'chevron-up'}
-                color={theme.COLOR_SURFACE_HIGH}
-                size={25}
-              />
-            )}
-            placeholderStyle={styles.dropdownPlaceholder}
-            style={styles.dropdown}
-            dropDownContainerStyle={styles.dropdownContainerStyle}
-            textStyle={styles.dropdownText}
-          />
-          <TouchableOpacity
-            style={styles.addActivity}
-            onPress={showCreateActivity}>
-            <Text style={styles.addActivityText}>Add an activity +</Text>
-          </TouchableOpacity>
-          {newVisible ? renderCreateActivity() : null}
+          {newVisible ? null : renderPicker()}
+          {newVisible ? renderCreateActivityView() : renderAddActivity()}
         </View>
         {newVisible ? null : renderNameCard()}
         <View style={styles.buttonContainer}>
@@ -142,6 +150,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     margin: 15,
+    zIndex: -1,
   },
   buttonContainer: {
     flexDirection: 'row',

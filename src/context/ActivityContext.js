@@ -40,10 +40,9 @@ export function ActivityProvider({children}) {
       timeLogged: 0,
       sessions: [],
     };
+    // Check if activiity exists already, return error
 
-    setActivities(prevState => {
-      [...prevState, newActivity];
-    });
+    setActivities(prevState => [...prevState, newActivity]);
   };
 
   const addTimeToActivity = (timeCard, activities) => {};
@@ -52,7 +51,7 @@ export function ActivityProvider({children}) {
     <ActivityContext.Provider
       value={{
         activities: activities,
-        newActivity: createActivity,
+        createActivity: createActivity,
         logTime: addTimeToActivity,
       }}>
       {children}

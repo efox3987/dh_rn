@@ -4,14 +4,37 @@ import {StyleSheet, View} from 'react-native';
 import StyledInput from '../Reusable/StyledInput';
 import DHButton from '../Reusable/DHButton';
 import theme from '../../style/theme';
+import ActivityContext from '../../context/ActivityContext';
 
 export default class CreateActivity extends React.Component {
+  static contextType = ActivityContext;
   constructor(props) {
     super(props);
+    this.state = {
+      title: '',
+      notes: '',
+    };
   }
-  onChangeTitle = text => {};
+  onChangeTitle = text => {
+    this.setState({title: text});
+  };
 
-  onChangeNotes = text => {};
+  onChangeNotes = text => {
+    this.setState({notes: text});
+  };
+
+  onCreatePress = () => {
+    const title = this.state.title;
+    const notes = this.state.notes;
+    console.log(title);
+    console.log(notes);
+    this.context.createActivity(title, notes);
+    this.props.hide();
+  };
+
+  onCancelPress = () => {
+    this.props.hide();
+  };
 
   render() {
     return (
@@ -22,15 +45,21 @@ export default class CreateActivity extends React.Component {
         />
         <StyledInput
           title={'Activity Notes'}
-          onChangeText={text => this.onChangeTitle(text)}
+          onChangeText={text => this.onChangeNotes(text)}
         />
         <View style={styles.buttonContainer}>
           <DHButton
             title={'Cancel'}
             primary={false}
-            onPress={this.props.onPressCancel}
+            onPress={this.onCancelPress}
           />
-          <DHButton title={'Create'} primary={true} />
+          <DHButton
+            title={'Create'}
+            primary={true}
+            onPress={() => {
+              this.onCreatePress();
+            }}
+          />
         </View>
       </View>
     );
