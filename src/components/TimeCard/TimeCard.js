@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import theme from '../../style/theme';
@@ -15,9 +15,9 @@ export function TimeCard(props) {
 
   const {logTime} = useContext(ActivityContext);
 
-  const updateTime = newTime => {
+  const updateTime = async newTime => {
+    console.log('newTime in updateTime: ' + newTime);
     setTime(newTime);
-    logTime(time, props.activity);
     console.log('time: ' + time);
   };
 

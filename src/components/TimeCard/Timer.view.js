@@ -24,6 +24,7 @@ class Timer extends React.Component {
 
   stop = () => {
     clearInterval(this.timerId);
+    console.log('time elapsed in stop() : ' + this.state.time);
     this.props.onPress(this.state.time);
   };
 
