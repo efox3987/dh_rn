@@ -15,10 +15,9 @@ export function TimeCard(props) {
 
   const {logTime} = useContext(ActivityContext);
 
-  const updateTime = async newTime => {
-    console.log('newTime in updateTime: ' + newTime);
-    setTime(newTime);
-    console.log('time: ' + time);
+  const updateTime = async currentLength => {
+    setTime(time + currentLength);
+    logTime(currentLength, props.activity);
   };
 
   return (

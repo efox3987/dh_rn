@@ -46,28 +46,38 @@ export function ActivityProvider({children}) {
   };
 
   const getIndexByTitle = title => {
-    console.log('Searchgin for: ' + title);
+    console.log('Searching for: ' + title);
     console.log(activities);
 
     activities.forEach((activity, index) => {
       if (activity.title === title) {
-        console.log('found at' + index);
-        return index;
+        console.log('found at ' + index);
+        const i = index;
+        return i;
       }
     });
+    return -1;
   };
 
   const addTimeToActivity = (time, activity) => {
     console.log('Adding time to ' + activity);
-    var i;
+
+    var i = -1;
     activities.forEach((item, index) => {
       if (item.title === activity) {
-        console.log('found at' + index);
+        console.log('found at ' + index);
         i = index;
       }
     });
 
-    let item = {...activities[i], timeLogged: time};
+    if (i === -1) {
+      console.error('Activity does not exist');
+    }
+
+    let item = {
+      ...activities[i],
+      timeLogged: activities[i].timeLogged + time,
+    };
     let items = [...activities];
     items[i] = item;
     setActivities(items);

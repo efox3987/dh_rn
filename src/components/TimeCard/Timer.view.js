@@ -9,6 +9,7 @@ class Timer extends React.Component {
     this.state = {
       running: false,
       time: /*320280*/ 58,
+      currentLength: 0,
     };
   }
 
@@ -25,7 +26,7 @@ class Timer extends React.Component {
   stop = () => {
     clearInterval(this.timerId);
     console.log('time elapsed in stop() : ' + this.state.time);
-    this.props.onPress(this.state.time);
+    this.props.onPress(this.state.currentLength);
   };
 
   start = () => {
@@ -36,7 +37,7 @@ class Timer extends React.Component {
     this.timerId = setInterval(() => {
       const millis = Date.now() - start;
       const secs = Math.floor(millis / 1000);
-      this.setState({time: elapsed + secs});
+      this.setState({time: elapsed + secs, currentLength: secs});
     }, 1000);
   };
 
