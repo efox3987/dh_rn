@@ -7,27 +7,29 @@ import {styles} from './styles';
 import CardContext from '../../context/CardContext';
 import {TimeCard} from '../../components/TimeCard/TimeCard';
 import ActivityPreview from '../../components/ActivityPreview';
-import FloatingButton from '../../components/FloatingButton';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
-class Home extends React.Component {
+interface Props {}
+interface State {
+  showTaskModal: boolean;
+  showPreview: boolean;
+  selectedCardIndex?: number;
+}
+
+class Home extends React.Component<Props, State> {
   static contextType = CardContext;
-  constructor(props) {
+  declare context: React.ContextType<typeof CardContext>;
+  constructor(props: Props) {
     super(props);
     this.state = {
       showTaskModal: false,
-      // selectedCard: {
-      //   title: null,
-      //   notes: null,
-      //   createdTime: null,
-      // },
-      selectedCardIndex: null,
       showPreview: false,
+      selectedCardIndex: undefined,
     };
   }
 
-  timeCardOnPress = index => {
+  timeCardOnPress = (index: number) => {
     console.log(index);
     console.log(this.context.timeCards[index].title);
     this.setState({selectedCardIndex: index});
@@ -40,15 +42,14 @@ class Home extends React.Component {
   };
 
   render() {
+    const listRef = React.createRef<FlatList>();
     return (
       <View style={styles.wrapper}>
         <View style={styles.main}>
           <FlatList
-            ref={ref => {
-              this.flatList = ref;
-            }}
+            ref={listRef}
             onContentSizeChange={() =>
-              this.flatList.scrollToEnd({animated: true})
+              listRef.current?.scrollToEnd({animated: true})
             }
             contentContainerStyle={styles.flatList}
             data={this.context.timeCards}
@@ -64,7 +65,7 @@ class Home extends React.Component {
                     ? this.timeCardOnPress(index)
                     : this.setState({
                         showPreview: false,
-                        selectedCardIndex: null,
+                        selectedCardIndex: undefined,
                       })
                 }
               />

@@ -2,20 +2,6 @@ import React, {createContext, useState} from 'react';
 
 const ActivityContext = createContext();
 
-// interface Session {
-//   title: string;
-//   notes: string;
-//   createdTime: Date;
-//   duration: number;
-// }
-
-// interface Activity {
-//   activityTitle: string;
-//   activityNotes: string;
-//   timeLogged: number;
-//   sessions: Session[];
-// }
-
 export function ActivityProvider({children}) {
   const [activities, setActivities] = useState([
     {
