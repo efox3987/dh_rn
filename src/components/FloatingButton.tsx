@@ -3,14 +3,17 @@ import React from 'react';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-import theme from './../style/theme';
+import theme from '../style/theme';
 
-export default class FloatingButton extends React.Component {
-  constructor(props) {
+interface Props {
+  onPress: () => void;
+}
+
+interface State {}
+
+export default class FloatingButton extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
-    this.state = {
-      onPress: props.onPress,
-    };
   }
 
   render() {

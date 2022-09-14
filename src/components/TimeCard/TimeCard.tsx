@@ -14,7 +14,7 @@ interface Props {
   hour: number;
   minutes: number;
   activity: string;
-  onPress: () => {};
+  onPress: () => void;
 }
 
 export function TimeCard(props: Props) {
