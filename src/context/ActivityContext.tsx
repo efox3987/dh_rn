@@ -1,25 +1,32 @@
 import React, {createContext, useState} from 'react';
+import {CardType} from './CardContext';
 
-const ActivityContext = createContext();
+export type ActivityType = {
+  title: string;
+  notes?: string;
+  timeLogged: number;
+  sessions: CardType[];
+};
 
-export function ActivityProvider({children}) {
-  const [activities, setActivities] = useState([
+interface ActivityCtxInterface {
+  activities: ActivityType[];
+  createActivity: (title: string, notes?: string) => void;
+  logTime: (time: number, activity: string) => void;
+}
+
+const ActivityContext = createContext<ActivityCtxInterface | null>(null);
+
+export function ActivityProvider({children}: any) {
+  const [activities, setActivities] = useState<ActivityType[]>([
     {
       title: 'Personal Work',
       notes: '',
       timeLogged: 0,
-      sessions: [
-        {
-          title: 'Test',
-          notes: 'Test notes',
-          createdTime: new Date(),
-          duration: 0,
-        },
-      ],
+      sessions: [],
     },
   ]);
 
-  const createActivity = (title, notes) => {
+  const createActivity = (title: string, notes?: string) => {
     const newActivity = {
       title: title,
       notes: notes,
@@ -31,21 +38,21 @@ export function ActivityProvider({children}) {
     setActivities(prevState => [...prevState, newActivity]);
   };
 
-  const getIndexByTitle = title => {
-    console.log('Searching for: ' + title);
-    console.log(activities);
+  // const getIndexByTitle = title => {
+  //   console.log('Searching for: ' + title);
+  //   console.log(activities);
 
-    activities.forEach((activity, index) => {
-      if (activity.title === title) {
-        console.log('found at ' + index);
-        const i = index;
-        return i;
-      }
-    });
-    return -1;
-  };
+  //   activities.forEach((activity, index) => {
+  //     if (activity.title === title) {
+  //       console.log('found at ' + index);
+  //       const i = index;
+  //       return i;
+  //     }
+  //   });
+  //   return -1;
+  // };
 
-  const addTimeToActivity = (time, activity) => {
+  const addTimeToActivity = (time: number, activity: string) => {
     console.log('Adding time to ' + activity);
 
     var i = -1;
