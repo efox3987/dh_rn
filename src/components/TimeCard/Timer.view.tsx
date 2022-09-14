@@ -1,10 +1,20 @@
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 import theme from '../../style/theme';
 import BlinkingColon from './BlinkingColon';
 
-class Timer extends React.Component {
-  constructor(props) {
+interface State {
+  running: boolean;
+  time: number;
+  currentLength: number;
+}
+
+interface Props {
+  onPress: (elapsedTime: number) => void;
+}
+
+class Timer extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       running: false,
@@ -12,19 +22,28 @@ class Timer extends React.Component {
       currentLength: 0,
     };
   }
+  private timerID: number = 0;
+
+  onComponentDidUpdate = (props: Props, state: State) => {
+    if (state.running !== this.state.running) {
+      console.log('hit');
+      state.running ? this.start() : this.stop();
+    }
+  };
 
   // Changes state of the timer. Calls timer start or stop methods depending on new state.
   onPress = () => {
-    this.state.running = !this.state.running;
+    this.setState({running: !this.state.running}, () => {
+      this.state.running ? this.start() : this.stop();
+    });
     console.log('running: ' + this.state.running);
-    this.state.running ? this.start() : this.stop();
+
     // Component did update instead of this?
     // Used to make sure timer stops blinking when you click it
-    this.forceUpdate();
   };
 
   stop = () => {
-    clearInterval(this.timerId);
+    clearInterval(this.timerID);
     console.log('time elapsed in stop() : ' + this.state.time);
     this.props.onPress(this.state.currentLength);
   };
@@ -34,7 +53,7 @@ class Timer extends React.Component {
     const start = Date.now();
     const elapsed = this.state.time;
 
-    this.timerId = setInterval(() => {
+    this.timerID = setInterval(() => {
       const millis = Date.now() - start;
       const secs = Math.floor(millis / 1000);
       this.setState({time: elapsed + secs, currentLength: secs});

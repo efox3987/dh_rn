@@ -1,23 +1,31 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import theme from '../../style/theme';
 import Timer from './Timer.view';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import CardContext from '../../context/CardContext';
+
 import ActivityContext from '../../context/ActivityContext';
 
-export function TimeCard(props) {
-  const [title, setTitle] = useState(props.title);
-  const [notes, setNotes] = useState(props.notes);
+interface Props {
+  title: string;
+  notes?: string;
+  hour: number;
+  minutes: number;
+  activity: string;
+  onPress: () => {};
+}
+
+export function TimeCard(props: Props) {
+  const {title, notes, hour, minutes, activity} = props;
   const [time, setTime] = useState(0);
 
   const {logTime} = useContext(ActivityContext);
 
-  const updateTime = async currentLength => {
-    setTime(time + currentLength);
-    logTime(currentLength, props.activity);
+  const updateTime = (elapsedTime: number) => {
+    setTime(time + elapsedTime);
+    logTime(elapsedTime, activity);
   };
 
   return (
@@ -31,11 +39,11 @@ export function TimeCard(props) {
           <Text style={styles.subText}>{notes}</Text>
         </View>
         <View style={styles.timerView}>
-          <Timer style={styles.timer} onPress={updateTime} />
+          <Timer onPress={updateTime} />
         </View>
       </View>
       <Text style={styles.createdTime}>
-        {props.hour}:{props.minutes}
+        {hour}:{minutes}
       </Text>
     </TouchableOpacity>
   );

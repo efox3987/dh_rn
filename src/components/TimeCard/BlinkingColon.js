@@ -18,12 +18,6 @@ export default class BlinkingColon extends Component {
     );
   }
 
-  componentDidUpdate = props => {
-    if (props.running !== this.props.running) {
-      this.props.running = props.running;
-    }
-  };
-
   render() {
     if (this.props.running === false) {
       return <Text>:</Text>;

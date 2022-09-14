@@ -43,9 +43,5 @@
   },
   "jest": {
     "preset": "react-native"
-  },
-  "babel": {
-    "presets": ["@babel/typescript", "module:metro-react-native-babel-preset"],
-    "plugins": [["@babel/plugin-transform-typescript", {"allowDeclareFields": true}]] 
   }
 }
