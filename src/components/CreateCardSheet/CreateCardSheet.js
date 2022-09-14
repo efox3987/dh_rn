@@ -17,7 +17,7 @@ function CreateCardSheet(props) {
   const [title, setTitle] = useState('');
   const [notes, setNotes] = useState('');
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState(null); // Value is the display value on the dropdown.
   const [newVisible, setNewVisible] = useState(false);
 
   const cardContext = useContext(CardContext);
@@ -32,7 +32,7 @@ function CreateCardSheet(props) {
   };
 
   const onSaveCard = () => {
-    cardContext.addCard(title, notes, value);
+    cardContext.addCard(title, value, notes);
     SheetManager.hide('create-card');
   };
 

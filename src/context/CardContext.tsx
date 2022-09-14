@@ -8,10 +8,15 @@ export type CardType = {
   duration: number;
 };
 
-const CardContext = createContext();
+interface CardCtxInterface {
+  timeCards: CardType[];
+  addCard: (title: string, activity: string, notes?: string) => void;
+}
 
-export function CardProvider({children}) {
-  const [timeCards, setTimeCards] = useState([
+const CardContext = createContext<CardCtxInterface | null>(null);
+
+export function CardProvider({children}: any) {
+  const [timeCards, setTimeCards] = useState<CardType[]>([
     {
       title: 'Default Card',
       notes:
@@ -22,15 +27,16 @@ export function CardProvider({children}) {
     },
   ]);
 
-  const addCard = (title, notes, activity) => {
+  const addCard = (title: string, activity: string, notes?: string) => {
     const createdTime = new Date();
     setTimeCards(prevState => [
       ...prevState,
       {
         title: title,
         notes: notes,
-        createdTime: createdTime,
         activity: activity,
+        createdTime: createdTime,
+        duration: 0,
       },
     ]);
   };
