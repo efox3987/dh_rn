@@ -1,10 +1,20 @@
 import React, {Component} from 'react';
 import {Text} from 'react-native';
 
-export default class BlinkingColon extends Component {
-  constructor(props) {
+interface Props {
+  running: boolean;
+}
+
+interface State {
+  showText: boolean;
+}
+
+export default class BlinkingColon extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
-    this.state = {showText: true};
+    this.state = {
+      showText: true,
+    };
 
     // Change the state every second
     setInterval(
