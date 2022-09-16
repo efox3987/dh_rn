@@ -1,19 +1,24 @@
 import React from 'react';
 import {View, Text, StyleSheet, Animated} from 'react-native';
 
-import theme from './../style/theme';
+import theme from '../style/theme';
 
 import CardContext from '../context/CardContext';
 
-export default class ActivityPreview extends React.Component {
-  constructor(props) {
+interface Props {
+  selectedCardIndex: number;
+}
+
+export default class ActivityPreview extends React.Component<Props> {
+  constructor(props: Props) {
     super(props);
   }
 
   static contextType = CardContext;
+  declare context: React.ContextType<typeof CardContext>;
 
   render() {
-    console.log('SUCCESS');
+    this.props.selectedCardIndex!;
     return (
       <Animated.View style={styles.main}>
         <View style={styles.card}>

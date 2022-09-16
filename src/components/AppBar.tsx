@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 const AppBar = () => {
   return <View style={[styles.main, styles.shadowProp]} />;

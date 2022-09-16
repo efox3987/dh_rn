@@ -14,7 +14,7 @@ interface Props {}
 interface State {
   showTaskModal: boolean;
   showPreview: boolean;
-  selectedCardIndex?: number;
+  selectedCardIndex: number;
 }
 
 class Home extends React.Component<Props, State> {
@@ -26,7 +26,7 @@ class Home extends React.Component<Props, State> {
     this.state = {
       showTaskModal: false,
       showPreview: false,
-      selectedCardIndex: undefined,
+      selectedCardIndex: -1,
     };
   }
 
@@ -64,7 +64,7 @@ class Home extends React.Component<Props, State> {
                     ? this.timeCardOnPress(index)
                     : this.setState({
                         showPreview: false,
-                        selectedCardIndex: undefined,
+                        selectedCardIndex: -1,
                       })
                 }
               />
