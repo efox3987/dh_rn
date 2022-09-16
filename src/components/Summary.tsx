@@ -1,36 +1,25 @@
 import React, {useContext} from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
+import {View, FlatList, StyleSheet} from 'react-native';
 import ActivityContext, {ActivityType} from '../context/ActivityContext';
-import CardContext, {CardType} from '../context/CardContext';
 import theme from '../style/theme';
+import ActivitySummary from './ActivitySummary';
 
 function Summary() {
-  const {timeCards} = useContext(CardContext);
   const {activities} = useContext(ActivityContext);
-
-  const renderCard = (item: CardType) => {
-    return (
-      <View style={styles.listItem}>
-        <Text style={styles.text}>{item.title}</Text>
-        <Text style={styles.text}>{item.notes}</Text>
-        <Text style={styles.text}>Hours {item.createdTime.getHours()}</Text>
-        <Text style={styles.text}>Minutes {item.createdTime.getMinutes()}</Text>
-      </View>
-    );
-  };
 
   const renderActivity = (item: ActivityType) => {
     return (
-      <View style={styles.listItem}>
-        <Text style={styles.text}>Activity Name: {item.title}</Text>
-        <Text style={styles.text}>Total time logged: {item.timeLogged}</Text>
-      </View>
+      <ActivitySummary
+        title={item.title}
+        notes={item.notes}
+        timeLogged={item.timeLogged}
+        sessions={item.sessions}
+      />
     );
   };
 
   return (
     <View style={styles.main}>
-      <FlatList data={timeCards} renderItem={({item}) => renderCard(item)} />
       <FlatList
         data={activities}
         renderItem={({item}) => renderActivity(item)}
@@ -42,6 +31,7 @@ function Summary() {
 const styles = StyleSheet.create({
   main: {
     color: theme.COLOR_SURFACE_LOWEST,
+    alignSelf: 'stretch',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'stretch',

@@ -5,8 +5,10 @@ platform :ios, '12.4'
 install! 'cocoapods', :deterministic_uuids => false
 
 production = ENV["PRODUCTION"] == "1"
+$RNFirebaseAsStaticFramework = true
 
 target 'dh_rn' do
+  use_frameworks!
   config = use_native_modules!
 
   # Flags change depending on the env values.
