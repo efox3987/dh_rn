@@ -1,4 +1,4 @@
 {
-  "presets": [["@babel/typescript", {"allowDeclareFields": true}], "module:metro-react-native-babel-preset"],
-  "plugins": [["@babel/plugin-transform-react-jsx"]],
+  "plugins": [["@babel/plugin-transform-typescript", {"allowDeclareFields": true}]],
+  "presets": [["@babel/typescript"], "module:metro-react-native-babel-preset"],
 }

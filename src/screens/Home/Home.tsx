@@ -20,6 +20,7 @@ interface State {
 class Home extends React.Component<Props, State> {
   static contextType = CardContext;
   declare context: React.ContextType<typeof CardContext>;
+
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -30,8 +31,6 @@ class Home extends React.Component<Props, State> {
   }
 
   timeCardOnPress = (index: number) => {
-    console.log(index);
-    console.log(this.context.timeCards[index].title);
     this.setState({selectedCardIndex: index});
 
     this.setState({showPreview: true});
@@ -52,7 +51,7 @@ class Home extends React.Component<Props, State> {
               listRef.current?.scrollToEnd({animated: true})
             }
             contentContainerStyle={styles.flatList}
-            data={this.context.timeCards}
+            data={this.context?.timeCards}
             renderItem={({item, index}) => (
               <TimeCard
                 title={item.title}

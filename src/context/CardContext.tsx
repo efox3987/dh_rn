@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useContext, useState} from 'react';
 
 export type CardType = {
   title: string;
@@ -13,7 +13,7 @@ interface CardCtxInterface {
   addCard: (title: string, activity: string, notes?: string) => void;
 }
 
-const CardContext = createContext<CardCtxInterface | null>(null);
+const CardContext = createContext<CardCtxInterface>({} as CardCtxInterface);
 
 export function CardProvider({children}: any) {
   const [timeCards, setTimeCards] = useState<CardType[]>([
@@ -49,3 +49,4 @@ export function CardProvider({children}: any) {
 }
 
 export default CardContext;
+export const useCardContext = () => useContext(CardContext);

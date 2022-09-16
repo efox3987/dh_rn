@@ -1,14 +1,14 @@
 import React, {useContext} from 'react';
 import {View, Text, FlatList, StyleSheet} from 'react-native';
-import ActivityContext from '../context/ActivityContext';
-import CardContext from '../context/CardContext';
+import ActivityContext, {ActivityType} from '../context/ActivityContext';
+import CardContext, {CardType} from '../context/CardContext';
 import theme from '../style/theme';
 
 function Summary() {
   const {timeCards} = useContext(CardContext);
   const {activities} = useContext(ActivityContext);
 
-  const renderCard = item => {
+  const renderCard = (item: CardType) => {
     return (
       <View style={styles.listItem}>
         <Text style={styles.text}>{item.title}</Text>
@@ -19,7 +19,7 @@ function Summary() {
     );
   };
 
-  const renderActivity = item => {
+  const renderActivity = (item: ActivityType) => {
     return (
       <View style={styles.listItem}>
         <Text style={styles.text}>Activity Name: {item.title}</Text>
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
   listItem: {
-    color: 'red',
+    backgroundColor: theme.COLOR_SURFACE_LOW,
   },
   text: {
     color: theme.COLOR_TEXT_WHITE,

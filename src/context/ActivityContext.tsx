@@ -14,7 +14,9 @@ interface ActivityCtxInterface {
   logTime: (time: number, activity: string) => void;
 }
 
-const ActivityContext = createContext<ActivityCtxInterface | null>(null);
+const ActivityContext = createContext<ActivityCtxInterface>(
+  {} as ActivityCtxInterface,
+);
 
 export function ActivityProvider({children}: any) {
   const [activities, setActivities] = useState<ActivityType[]>([
